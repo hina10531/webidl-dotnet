@@ -57,6 +57,6 @@
     <Folder Include="TestResources\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestResources\Preprocessor.BasicTest.Minimal.idl" />
+    <EmbeddedResource Include="TestResources\Minimal.idl" />
   </ItemGroup>
 </Project>
