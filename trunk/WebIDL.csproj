@@ -37,6 +37,9 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Definition.cs" />
+    <Compile Include="Grammar\WebIDLParser.cs" />
+    <Compile Include="Grammar\WebIDLLexer.cs" />
+    <Compile Include="Grammar\WebIDLLexer.FIX.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -50,5 +53,9 @@
   </ProjectExtensions>
   <ItemGroup>
     <None Include="WebIDL.g" />
+    <None Include="Grammar\WebIDL.tokens" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Grammar\" />
   </ItemGroup>
 </Project>
