@@ -9,9 +9,8 @@ namespace WebIDL.Test
 		[Test()]
 		public void BasicTest()
 		{
-			var def = new Definition("/home/juanse/lala");
+
 			
-			Assert.IsNotNull(def);
 		}
 	}
 }

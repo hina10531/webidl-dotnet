@@ -46,11 +46,20 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="DefinitionTest.cs" />
+    <Compile Include="ToolsTest\PreprocessorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebIDL.csproj">
       <Project>{BE2AFFB0-6D80-4AD8-A4B1-5E8196C4BF25}</Project>
       <Name>WebIDL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ToolsTest\" />
+    <Folder Include="TestResources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestResources\Preprocessor.BasicTest.FileOne.idl" />
+    <EmbeddedResource Include="TestResources\Preprocessor.BasicTest.FileTwo.idl" />
   </ItemGroup>
 </Project>
