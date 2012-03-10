@@ -46,7 +46,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="DefinitionTest.cs" />
-    <Compile Include="ToolsTest\PreprocessorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebIDL.csproj">
@@ -55,11 +54,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ToolsTest\" />
     <Folder Include="TestResources\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestResources\Preprocessor.BasicTest.FileOne.idl" />
-    <EmbeddedResource Include="TestResources\Preprocessor.BasicTest.FileTwo.idl" />
+    <EmbeddedResource Include="TestResources\Preprocessor.BasicTest.Minimal.idl" />
   </ItemGroup>
 </Project>
