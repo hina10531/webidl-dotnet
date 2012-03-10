@@ -9,8 +9,7 @@ namespace WebIDL.Test
 		[Test()]
 		public void BasicTest()
 		{
-
-			
+			var definition = new Definition("module {};");
 		}
 	}
 }

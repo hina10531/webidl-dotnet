@@ -6,7 +6,7 @@ namespace WebIDL
 {
 	public class Definition
 	{
-		public Definition(params string[] filenames)
+		public Definition(string sourcetext)
 		{
 			
 
