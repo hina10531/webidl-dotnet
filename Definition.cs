@@ -4,9 +4,9 @@ namespace WebIDL
 {
 	public class Definition
 	{
-		public static Definition FromFile(string path)
+		public Definition(string filename)
 		{
-			return new Definition();
+			
 		}
 	}
 }
