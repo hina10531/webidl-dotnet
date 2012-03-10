@@ -7,9 +7,11 @@ namespace WebIDL.Test
 	public class DefinitionTest
 	{
 		[Test()]
-		public void CreateFormFile()
+		public void BasicTest()
 		{
+			var def = new Definition("/home/juanse/lala");
 			
+			Assert.IsNotNull(def);
 		}
 	}
 }
