@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-10 17:38:12
+// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-10 19:18:09
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -35,10 +35,14 @@ namespace  WebIDL.Grammar
 public partial class WebIDLParser : Antlr.Runtime.Parser
 {
 	internal static readonly string[] tokenNames = new string[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "WS"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLOCK_CLOSE", "BLOCK_OPEN", "ID", "KW_MODULE", "WS"
 	};
 	public const int EOF=-1;
-	public const int WS=4;
+	public const int BLOCK_CLOSE=4;
+	public const int BLOCK_OPEN=5;
+	public const int ID=6;
+	public const int KW_MODULE=7;
+	public const int WS=8;
 
 	public WebIDLParser(ITokenStream input)
 		: this(input, new RecognizerSharedState())
@@ -83,7 +87,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 	partial void LeaveRule_definition();
 
 	// $ANTLR start "definition"
-	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:13:8: public definition : EOF ;
+	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:13:8: public definition : ( module )* EOF ;
 	[GrammarRule("definition")]
 	public AstParserRuleReturnScope<object, IToken> definition()
 	{
@@ -95,23 +99,66 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 
 		object root_0 = default(object);
 
-		IToken EOF1 = default(IToken);
+		IToken EOF2 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> module1 = default(AstParserRuleReturnScope<object, IToken>);
 
-		object EOF1_tree = default(object);
+		object EOF2_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "definition");
-		DebugLocation(13, 22);
+		DebugLocation(13, 12);
 		try
 		{
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:13:18: ( EOF )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:13:18: ( ( module )* EOF )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:13:20: EOF
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:14:2: ( module )* EOF
 			{
 			root_0 = (object)adaptor.Nil();
 
-			DebugLocation(13, 20);
-			EOF1=(IToken)Match(input,EOF,Follow._EOF_in_definition49); 
-			EOF1_tree = (object)adaptor.Create(EOF1);
-			adaptor.AddChild(root_0, EOF1_tree);
+			DebugLocation(14, 2);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:14:2: ( module )*
+			try { DebugEnterSubRule(1);
+			while (true)
+			{
+				int alt1=2;
+				try { DebugEnterDecision(1, false);
+				int LA1_0 = input.LA(1);
+
+				if ((LA1_0==KW_MODULE))
+				{
+					alt1 = 1;
+				}
+
+
+				} finally { DebugExitDecision(1); }
+				switch ( alt1 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:14:2: module
+					{
+					DebugLocation(14, 2);
+					PushFollow(Follow._module_in_definition50);
+					module1=module();
+					PopFollow();
+
+					adaptor.AddChild(root_0, module1.Tree);
+
+					}
+					break;
+
+				default:
+					goto loop1;
+				}
+			}
+
+			loop1:
+				;
+
+			} finally { DebugExitSubRule(1); }
+
+			DebugLocation(14, 10);
+			EOF2=(IToken)Match(input,EOF,Follow._EOF_in_definition53); 
+			EOF2_tree = (object)adaptor.Create(EOF2);
+			adaptor.AddChild(root_0, EOF2_tree);
 
 			}
 
@@ -134,19 +181,212 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			LeaveRule("definition", 1);
 			LeaveRule_definition();
 		}
-		DebugLocation(13, 22);
+		DebugLocation(14, 12);
 		} finally { DebugExitRule(GrammarFileName, "definition"); }
 		return retval;
 
 	}
 	// $ANTLR end "definition"
+
+	partial void EnterRule_module();
+	partial void LeaveRule_module();
+
+	// $ANTLR start "module"
+	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:16:1: module : KW_MODULE ID BLOCK_OPEN ( module_member )* BLOCK_CLOSE ;
+	[GrammarRule("module")]
+	private AstParserRuleReturnScope<object, IToken> module()
+	{
+		EnterRule_module();
+		EnterRule("module", 2);
+		TraceIn("module", 2);
+		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
+		retval.Start = (IToken)input.LT(1);
+
+		object root_0 = default(object);
+
+		IToken KW_MODULE3 = default(IToken);
+		IToken ID4 = default(IToken);
+		IToken BLOCK_OPEN5 = default(IToken);
+		IToken BLOCK_CLOSE7 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> module_member6 = default(AstParserRuleReturnScope<object, IToken>);
+
+		object KW_MODULE3_tree = default(object);
+		object ID4_tree = default(object);
+		object BLOCK_OPEN5_tree = default(object);
+		object BLOCK_CLOSE7_tree = default(object);
+		try { DebugEnterRule(GrammarFileName, "module");
+		DebugLocation(16, 53);
+		try
+		{
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:17:2: ( KW_MODULE ID BLOCK_OPEN ( module_member )* BLOCK_CLOSE )
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:17:4: KW_MODULE ID BLOCK_OPEN ( module_member )* BLOCK_CLOSE
+			{
+			root_0 = (object)adaptor.Nil();
+
+			DebugLocation(17, 4);
+			KW_MODULE3=(IToken)Match(input,KW_MODULE,Follow._KW_MODULE_in_module62); 
+			KW_MODULE3_tree = (object)adaptor.Create(KW_MODULE3);
+			adaptor.AddChild(root_0, KW_MODULE3_tree);
+			DebugLocation(17, 14);
+			ID4=(IToken)Match(input,ID,Follow._ID_in_module64); 
+			ID4_tree = (object)adaptor.Create(ID4);
+			adaptor.AddChild(root_0, ID4_tree);
+			DebugLocation(17, 17);
+			BLOCK_OPEN5=(IToken)Match(input,BLOCK_OPEN,Follow._BLOCK_OPEN_in_module66); 
+			BLOCK_OPEN5_tree = (object)adaptor.Create(BLOCK_OPEN5);
+			adaptor.AddChild(root_0, BLOCK_OPEN5_tree);
+			DebugLocation(17, 28);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:17:28: ( module_member )*
+			try { DebugEnterSubRule(2);
+			while (true)
+			{
+				int alt2=2;
+				try { DebugEnterDecision(2, false);
+				int LA2_0 = input.LA(1);
+
+				if ((LA2_0==KW_MODULE))
+				{
+					alt2 = 1;
+				}
+
+
+				} finally { DebugExitDecision(2); }
+				switch ( alt2 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:17:28: module_member
+					{
+					DebugLocation(17, 28);
+					PushFollow(Follow._module_member_in_module68);
+					module_member6=module_member();
+					PopFollow();
+
+					adaptor.AddChild(root_0, module_member6.Tree);
+
+					}
+					break;
+
+				default:
+					goto loop2;
+				}
+			}
+
+			loop2:
+				;
+
+			} finally { DebugExitSubRule(2); }
+
+			DebugLocation(17, 43);
+			BLOCK_CLOSE7=(IToken)Match(input,BLOCK_CLOSE,Follow._BLOCK_CLOSE_in_module71); 
+			BLOCK_CLOSE7_tree = (object)adaptor.Create(BLOCK_CLOSE7);
+			adaptor.AddChild(root_0, BLOCK_CLOSE7_tree);
+
+			}
+
+			retval.Stop = (IToken)input.LT(-1);
+
+			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
+			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
+
+		}
+		catch (RecognitionException re)
+		{
+			ReportError(re);
+			Recover(input,re);
+		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
+
+		}
+		finally
+		{
+			TraceOut("module", 2);
+			LeaveRule("module", 2);
+			LeaveRule_module();
+		}
+		DebugLocation(17, 53);
+		} finally { DebugExitRule(GrammarFileName, "module"); }
+		return retval;
+
+	}
+	// $ANTLR end "module"
+
+	partial void EnterRule_module_member();
+	partial void LeaveRule_module_member();
+
+	// $ANTLR start "module_member"
+	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:19:1: module_member : module ;
+	[GrammarRule("module_member")]
+	private AstParserRuleReturnScope<object, IToken> module_member()
+	{
+		EnterRule_module_member();
+		EnterRule("module_member", 3);
+		TraceIn("module_member", 3);
+		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
+		retval.Start = (IToken)input.LT(1);
+
+		object root_0 = default(object);
+
+		AstParserRuleReturnScope<object, IToken> module8 = default(AstParserRuleReturnScope<object, IToken>);
+
+		try { DebugEnterRule(GrammarFileName, "module_member");
+		DebugLocation(19, 7);
+		try
+		{
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:19:14: ( module )
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:20:2: module
+			{
+			root_0 = (object)adaptor.Nil();
+
+			DebugLocation(20, 2);
+			PushFollow(Follow._module_in_module_member80);
+			module8=module();
+			PopFollow();
+
+			adaptor.AddChild(root_0, module8.Tree);
+
+			}
+
+			retval.Stop = (IToken)input.LT(-1);
+
+			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
+			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
+
+		}
+		catch (RecognitionException re)
+		{
+			ReportError(re);
+			Recover(input,re);
+		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
+
+		}
+		finally
+		{
+			TraceOut("module_member", 3);
+			LeaveRule("module_member", 3);
+			LeaveRule_module_member();
+		}
+		DebugLocation(20, 7);
+		} finally { DebugExitRule(GrammarFileName, "module_member"); }
+		return retval;
+
+	}
+	// $ANTLR end "module_member"
 	#endregion Rules
 
 
 	#region Follow sets
 	private static class Follow
 	{
-		public static readonly BitSet _EOF_in_definition49 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _module_in_definition50 = new BitSet(new ulong[]{0x80UL});
+		public static readonly BitSet _EOF_in_definition53 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _KW_MODULE_in_module62 = new BitSet(new ulong[]{0x40UL});
+		public static readonly BitSet _ID_in_module64 = new BitSet(new ulong[]{0x20UL});
+		public static readonly BitSet _BLOCK_OPEN_in_module66 = new BitSet(new ulong[]{0x90UL});
+		public static readonly BitSet _module_member_in_module68 = new BitSet(new ulong[]{0x90UL});
+		public static readonly BitSet _BLOCK_CLOSE_in_module71 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _module_in_module_member80 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }

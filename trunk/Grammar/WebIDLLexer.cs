@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-10 17:38:12
+// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-10 19:18:09
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -31,7 +31,11 @@ namespace  WebIDL.Grammar
 public partial class WebIDLLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
-	public const int WS=4;
+	public const int BLOCK_CLOSE=4;
+	public const int BLOCK_OPEN=5;
+	public const int ID=6;
+	public const int KW_MODULE=7;
+	public const int WS=8;
 
     // delegates
     // delegators
@@ -59,6 +63,198 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 	partial void EnterRule(string ruleName, int ruleIndex);
 	partial void LeaveRule(string ruleName, int ruleIndex);
 
+	partial void EnterRule_KW_MODULE();
+	partial void LeaveRule_KW_MODULE();
+
+	// $ANTLR start "KW_MODULE"
+	[GrammarRule("KW_MODULE")]
+	private void mKW_MODULE()
+	{
+		EnterRule_KW_MODULE();
+		EnterRule("KW_MODULE", 1);
+		TraceIn("KW_MODULE", 1);
+		try
+		{
+			int _type = KW_MODULE;
+			int _channel = DefaultTokenChannel;
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:23:2: ( 'module' )
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:23:4: 'module'
+			{
+			DebugLocation(23, 4);
+			Match("module"); 
+
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("KW_MODULE", 1);
+			LeaveRule("KW_MODULE", 1);
+			LeaveRule_KW_MODULE();
+		}
+	}
+	// $ANTLR end "KW_MODULE"
+
+	partial void EnterRule_BLOCK_OPEN();
+	partial void LeaveRule_BLOCK_OPEN();
+
+	// $ANTLR start "BLOCK_OPEN"
+	[GrammarRule("BLOCK_OPEN")]
+	private void mBLOCK_OPEN()
+	{
+		EnterRule_BLOCK_OPEN();
+		EnterRule("BLOCK_OPEN", 2);
+		TraceIn("BLOCK_OPEN", 2);
+		try
+		{
+			int _type = BLOCK_OPEN;
+			int _channel = DefaultTokenChannel;
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:26:2: ( '{' )
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:26:4: '{'
+			{
+			DebugLocation(26, 4);
+			Match('{'); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("BLOCK_OPEN", 2);
+			LeaveRule("BLOCK_OPEN", 2);
+			LeaveRule_BLOCK_OPEN();
+		}
+	}
+	// $ANTLR end "BLOCK_OPEN"
+
+	partial void EnterRule_BLOCK_CLOSE();
+	partial void LeaveRule_BLOCK_CLOSE();
+
+	// $ANTLR start "BLOCK_CLOSE"
+	[GrammarRule("BLOCK_CLOSE")]
+	private void mBLOCK_CLOSE()
+	{
+		EnterRule_BLOCK_CLOSE();
+		EnterRule("BLOCK_CLOSE", 3);
+		TraceIn("BLOCK_CLOSE", 3);
+		try
+		{
+			int _type = BLOCK_CLOSE;
+			int _channel = DefaultTokenChannel;
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:28:2: ( '};' )
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:28:4: '};'
+			{
+			DebugLocation(28, 4);
+			Match("};"); 
+
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("BLOCK_CLOSE", 3);
+			LeaveRule("BLOCK_CLOSE", 3);
+			LeaveRule_BLOCK_CLOSE();
+		}
+	}
+	// $ANTLR end "BLOCK_CLOSE"
+
+	partial void EnterRule_ID();
+	partial void LeaveRule_ID();
+
+	// $ANTLR start "ID"
+	[GrammarRule("ID")]
+	private void mID()
+	{
+		EnterRule_ID();
+		EnterRule("ID", 4);
+		TraceIn("ID", 4);
+		try
+		{
+			int _type = ID;
+			int _channel = DefaultTokenChannel;
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:4: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:6: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			{
+			DebugLocation(30, 6);
+			if ((input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+			DebugLocation(30, 30);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:30: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			try { DebugEnterSubRule(1);
+			while (true)
+			{
+				int alt1=2;
+				try { DebugEnterDecision(1, false);
+				int LA1_0 = input.LA(1);
+
+				if (((LA1_0>='0' && LA1_0<='9')||(LA1_0>='A' && LA1_0<='Z')||(LA1_0>='a' && LA1_0<='z')))
+				{
+					alt1 = 1;
+				}
+
+
+				} finally { DebugExitDecision(1); }
+				switch ( alt1 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:
+					{
+					DebugLocation(30, 30);
+					input.Consume();
+
+
+					}
+					break;
+
+				default:
+					goto loop1;
+				}
+			}
+
+			loop1:
+				;
+
+			} finally { DebugExitSubRule(1); }
+
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("ID", 4);
+			LeaveRule("ID", 4);
+			LeaveRule_ID();
+		}
+	}
+	// $ANTLR end "ID"
+
 	partial void EnterRule_WS();
 	partial void LeaveRule_WS();
 
@@ -67,19 +263,30 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 	private void mWS()
 	{
 		EnterRule_WS();
-		EnterRule("WS", 1);
-		TraceIn("WS", 1);
+		EnterRule("WS", 5);
+		TraceIn("WS", 5);
 		try
 		{
 			int _type = WS;
 			int _channel = DefaultTokenChannel;
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:15:4: ( ' ' )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:32:4: ( ( ' ' | '\\n' | '\\t' ) )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:15:6: ' '
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:32:6: ( ' ' | '\\n' | '\\t' )
 			{
-			DebugLocation(15, 6);
-			Match(' '); 
-			DebugLocation(15, 10);
+			DebugLocation(32, 6);
+			if ((input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)==' ')
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+			DebugLocation(32, 22);
 			_channel=HIDDEN;
 
 			}
@@ -89,8 +296,8 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("WS", 1);
-			LeaveRule("WS", 1);
+			TraceOut("WS", 5);
+			LeaveRule("WS", 5);
 			LeaveRule_WS();
 		}
 	}
@@ -98,15 +305,201 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:8: ( WS )
-		DebugEnterAlt(1);
-		// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:10: WS
+		// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:8: ( KW_MODULE | BLOCK_OPEN | BLOCK_CLOSE | ID | WS )
+		int alt2=5;
+		try { DebugEnterDecision(2, false);
+		switch (input.LA(1))
 		{
-		DebugLocation(1, 10);
-		mWS(); 
+		case 'm':
+			{
+			int LA2_1 = input.LA(2);
 
+			if ((LA2_1=='o'))
+			{
+				int LA2_6 = input.LA(3);
+
+				if ((LA2_6=='d'))
+				{
+					int LA2_7 = input.LA(4);
+
+					if ((LA2_7=='u'))
+					{
+						int LA2_8 = input.LA(5);
+
+						if ((LA2_8=='l'))
+						{
+							int LA2_9 = input.LA(6);
+
+							if ((LA2_9=='e'))
+							{
+								int LA2_10 = input.LA(7);
+
+								if (((LA2_10>='0' && LA2_10<='9')||(LA2_10>='A' && LA2_10<='Z')||(LA2_10>='a' && LA2_10<='z')))
+								{
+									alt2 = 4;
+								}
+								else
+								{
+									alt2 = 1;
+								}
+							}
+							else
+							{
+								alt2 = 4;
+							}
+						}
+						else
+						{
+							alt2 = 4;
+						}
+					}
+					else
+					{
+						alt2 = 4;
+					}
+				}
+				else
+				{
+					alt2 = 4;
+				}
+			}
+			else
+			{
+				alt2 = 4;
+			}
+			}
+			break;
+		case '{':
+			{
+			alt2 = 2;
+			}
+			break;
+		case '}':
+			{
+			alt2 = 3;
+			}
+			break;
+		case 'A':
+		case 'B':
+		case 'C':
+		case 'D':
+		case 'E':
+		case 'F':
+		case 'G':
+		case 'H':
+		case 'I':
+		case 'J':
+		case 'K':
+		case 'L':
+		case 'M':
+		case 'N':
+		case 'O':
+		case 'P':
+		case 'Q':
+		case 'R':
+		case 'S':
+		case 'T':
+		case 'U':
+		case 'V':
+		case 'W':
+		case 'X':
+		case 'Y':
+		case 'Z':
+		case '_':
+		case 'a':
+		case 'b':
+		case 'c':
+		case 'd':
+		case 'e':
+		case 'f':
+		case 'g':
+		case 'h':
+		case 'i':
+		case 'j':
+		case 'k':
+		case 'l':
+		case 'n':
+		case 'o':
+		case 'p':
+		case 'q':
+		case 'r':
+		case 's':
+		case 't':
+		case 'u':
+		case 'v':
+		case 'w':
+		case 'x':
+		case 'y':
+		case 'z':
+			{
+			alt2 = 4;
+			}
+			break;
+		case '\t':
+		case '\n':
+		case ' ':
+			{
+			alt2 = 5;
+			}
+			break;
+		default:
+			{
+				NoViableAltException nvae = new NoViableAltException("", 2, 0, input);
+				DebugRecognitionException(nvae);
+				throw nvae;
+			}
 		}
 
+		} finally { DebugExitDecision(2); }
+		switch (alt2)
+		{
+		case 1:
+			DebugEnterAlt(1);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:10: KW_MODULE
+			{
+			DebugLocation(1, 10);
+			mKW_MODULE(); 
+
+			}
+			break;
+		case 2:
+			DebugEnterAlt(2);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:20: BLOCK_OPEN
+			{
+			DebugLocation(1, 20);
+			mBLOCK_OPEN(); 
+
+			}
+			break;
+		case 3:
+			DebugEnterAlt(3);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:31: BLOCK_CLOSE
+			{
+			DebugLocation(1, 31);
+			mBLOCK_CLOSE(); 
+
+			}
+			break;
+		case 4:
+			DebugEnterAlt(4);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:43: ID
+			{
+			DebugLocation(1, 43);
+			mID(); 
+
+			}
+			break;
+		case 5:
+			DebugEnterAlt(5);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:46: WS
+			{
+			DebugLocation(1, 46);
+			mWS(); 
+
+			}
+			break;
+
+		}
 
 	}
 
