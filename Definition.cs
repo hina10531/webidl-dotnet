@@ -54,11 +54,16 @@ namespace WebIDL
 		}
 		
 		
-		public Definition(string sourcetext)
+		internal Definition(CommonTree tree)
 		{
-			var tree = createFromString(sourcetext);
-			
-
+			append(tree);
+		}
+		
+		protected void append(CommonTree tree)
+		{
+			if(tree.Children == null)
+				return;
+				
 			foreach(var child in tree.Children)
 			{
 				if(child.Type == Grammar.WebIDLLexer.KW_MODULE)
@@ -67,25 +72,22 @@ namespace WebIDL
 					
 					if(modules.ContainsKey(modulename))
 					{
-						modules[modulename].Append((CommonTree)child.GetChild(1));
+						modules[modulename].append((CommonTree)child.GetChild(1));
 					}
 					else
 					{
-						var newmodule = new Module((CommonTree)child.GetChild(0), this);
+						var newmodule = new Module((CommonTree)child, this);
 						modules.Add(newmodule.Name, newmodule);
 						members.Add(newmodule.Name, newmodule);
 					}
-					
-					
-					
-					
-					
-					
-					
-					
-					
 				}
 			}
+		}
+		
+		
+		public Definition(string sourcetext):this(createFromString(sourcetext))
+		{
+			
 			
 		}
 		

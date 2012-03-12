@@ -45,11 +45,23 @@ namespace WebIDL.Test
 		}
 		
 		[Test()]
+		public void NestedModule()
+		{
+			var definition = new Definition("module a{ module b{};};");
+			
+			Assert.AreEqual(definition.Modules[0].Modules[0].Name,"b"); 
+			
+		}
+		
+		[Test()]
 		public void RepeatModuleIsSame()
 		{
-			var definition = new Definition("module a{}; module a{};");
+			var definition = new Definition("module a{ module b{};}; module a{ module c{};};");
 			
 			Assert.AreEqual(definition.Modules.Count, 1);
+			Assert.AreEqual(definition.Modules[0].Modules.Count,2);
+			Assert.AreEqual( definition.Modules[0].Modules[0].Name,"b");
+			Assert.AreEqual( definition.Modules[0].Modules[1].Name,"c");
 		}
 	}
 }

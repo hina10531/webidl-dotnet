@@ -22,7 +22,7 @@ using Antlr.Runtime.Tree;
 
 namespace WebIDL
 {
-	public class Module : IDefinible
+	public class Module : Definition, IDefinible
 	{
 		private string name;
 		private IContainer container;
@@ -43,16 +43,10 @@ namespace WebIDL
 			}
 		}
 		
-		internal Module(CommonTree tree, IContainer container)
+		internal Module(CommonTree tree, IContainer container) :base((CommonTree)tree.Children[1])
 		{
-			this.name = tree.Text;
+			this.name = tree.Children[0].Text;
 			this.container = container;
-			//this.Append((CommonTree) ((CommonTree)tree.Children[1]).Children );
-		}
-		
-		internal void Append(CommonTree tree)
-		{
-			
 		}
 	}
 }
