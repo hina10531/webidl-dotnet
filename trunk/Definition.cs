@@ -11,10 +11,6 @@ namespace WebIDL
 		public Definition(string sourcetext)
 		{
 			var tree = createFromString(sourcetext);
-			
-
-			
-			
 		}
 		
 		private static CommonTree createFromString(string sourcetext)
@@ -27,9 +23,15 @@ namespace WebIDL
 			
 			var grammar = new Grammar.WebIDLParser(tokens);
 			
+			var lolo = (CommonTree) grammar.fileDef().Tree;
 			
-			return (CommonTree)grammar.definition().Tree;
+
+			return lolo;
+			
+			
+			
 		}
 	}
+		
 }
 

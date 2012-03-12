@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-10 19:18:09
+// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-11 23:53:06
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -31,10 +31,10 @@ namespace  WebIDL.Grammar
 public partial class WebIDLLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
-	public const int BLOCK_CLOSE=4;
-	public const int BLOCK_OPEN=5;
-	public const int ID=6;
-	public const int KW_MODULE=7;
+	public const int CLOSE_BLOCK=4;
+	public const int ID=5;
+	public const int KW_MODULE=6;
+	public const int OPEN_BLOCK=7;
 	public const int WS=8;
 
     // delegates
@@ -77,11 +77,11 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 		{
 			int _type = KW_MODULE;
 			int _channel = DefaultTokenChannel;
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:23:2: ( 'module' )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:22:2: ( 'module' )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:23:4: 'module'
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:22:4: 'module'
 			{
-			DebugLocation(23, 4);
+			DebugLocation(22, 4);
 			Match("module"); 
 
 
@@ -99,19 +99,19 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 	}
 	// $ANTLR end "KW_MODULE"
 
-	partial void EnterRule_BLOCK_OPEN();
-	partial void LeaveRule_BLOCK_OPEN();
+	partial void EnterRule_OPEN_BLOCK();
+	partial void LeaveRule_OPEN_BLOCK();
 
-	// $ANTLR start "BLOCK_OPEN"
-	[GrammarRule("BLOCK_OPEN")]
-	private void mBLOCK_OPEN()
+	// $ANTLR start "OPEN_BLOCK"
+	[GrammarRule("OPEN_BLOCK")]
+	private void mOPEN_BLOCK()
 	{
-		EnterRule_BLOCK_OPEN();
-		EnterRule("BLOCK_OPEN", 2);
-		TraceIn("BLOCK_OPEN", 2);
+		EnterRule_OPEN_BLOCK();
+		EnterRule("OPEN_BLOCK", 2);
+		TraceIn("OPEN_BLOCK", 2);
 		try
 		{
-			int _type = BLOCK_OPEN;
+			int _type = OPEN_BLOCK;
 			int _channel = DefaultTokenChannel;
 			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:26:2: ( '{' )
 			DebugEnterAlt(1);
@@ -127,26 +127,26 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("BLOCK_OPEN", 2);
-			LeaveRule("BLOCK_OPEN", 2);
-			LeaveRule_BLOCK_OPEN();
+			TraceOut("OPEN_BLOCK", 2);
+			LeaveRule("OPEN_BLOCK", 2);
+			LeaveRule_OPEN_BLOCK();
 		}
 	}
-	// $ANTLR end "BLOCK_OPEN"
+	// $ANTLR end "OPEN_BLOCK"
 
-	partial void EnterRule_BLOCK_CLOSE();
-	partial void LeaveRule_BLOCK_CLOSE();
+	partial void EnterRule_CLOSE_BLOCK();
+	partial void LeaveRule_CLOSE_BLOCK();
 
-	// $ANTLR start "BLOCK_CLOSE"
-	[GrammarRule("BLOCK_CLOSE")]
-	private void mBLOCK_CLOSE()
+	// $ANTLR start "CLOSE_BLOCK"
+	[GrammarRule("CLOSE_BLOCK")]
+	private void mCLOSE_BLOCK()
 	{
-		EnterRule_BLOCK_CLOSE();
-		EnterRule("BLOCK_CLOSE", 3);
-		TraceIn("BLOCK_CLOSE", 3);
+		EnterRule_CLOSE_BLOCK();
+		EnterRule("CLOSE_BLOCK", 3);
+		TraceIn("CLOSE_BLOCK", 3);
 		try
 		{
-			int _type = BLOCK_CLOSE;
+			int _type = CLOSE_BLOCK;
 			int _channel = DefaultTokenChannel;
 			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:28:2: ( '};' )
 			DebugEnterAlt(1);
@@ -163,12 +163,12 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("BLOCK_CLOSE", 3);
-			LeaveRule("BLOCK_CLOSE", 3);
-			LeaveRule_BLOCK_CLOSE();
+			TraceOut("CLOSE_BLOCK", 3);
+			LeaveRule("CLOSE_BLOCK", 3);
+			LeaveRule_CLOSE_BLOCK();
 		}
 	}
-	// $ANTLR end "BLOCK_CLOSE"
+	// $ANTLR end "CLOSE_BLOCK"
 
 	partial void EnterRule_ID();
 	partial void LeaveRule_ID();
@@ -184,11 +184,11 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 		{
 			int _type = ID;
 			int _channel = DefaultTokenChannel;
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:4: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:31:4: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:6: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:31:6: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
-			DebugLocation(30, 6);
+			DebugLocation(31, 6);
 			if ((input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z'))
 			{
 				input.Consume();
@@ -201,8 +201,8 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 				throw mse;
 			}
 
-			DebugLocation(30, 30);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:30: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			DebugLocation(31, 30);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:31:30: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			try { DebugEnterSubRule(1);
 			while (true)
 			{
@@ -210,7 +210,7 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 				try { DebugEnterDecision(1, false);
 				int LA1_0 = input.LA(1);
 
-				if (((LA1_0>='0' && LA1_0<='9')||(LA1_0>='A' && LA1_0<='Z')||(LA1_0>='a' && LA1_0<='z')))
+				if (((LA1_0>='0' && LA1_0<='9')||(LA1_0>='A' && LA1_0<='Z')||LA1_0=='_'||(LA1_0>='a' && LA1_0<='z')))
 				{
 					alt1 = 1;
 				}
@@ -223,7 +223,7 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 					DebugEnterAlt(1);
 					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:
 					{
-					DebugLocation(30, 30);
+					DebugLocation(31, 30);
 					input.Consume();
 
 
@@ -269,12 +269,12 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 		{
 			int _type = WS;
 			int _channel = DefaultTokenChannel;
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:32:4: ( ( ' ' | '\\n' | '\\t' ) )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:33:4: ( ( ' ' | '\\n' ) )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:32:6: ( ' ' | '\\n' | '\\t' )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:33:6: ( ' ' | '\\n' )
 			{
-			DebugLocation(32, 6);
-			if ((input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)==' ')
+			DebugLocation(33, 6);
+			if (input.LA(1)=='\n'||input.LA(1)==' ')
 			{
 				input.Consume();
 			}
@@ -286,7 +286,7 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 				throw mse;
 			}
 
-			DebugLocation(32, 22);
+			DebugLocation(33, 17);
 			_channel=HIDDEN;
 
 			}
@@ -305,7 +305,7 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:8: ( KW_MODULE | BLOCK_OPEN | BLOCK_CLOSE | ID | WS )
+		// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:8: ( KW_MODULE | OPEN_BLOCK | CLOSE_BLOCK | ID | WS )
 		int alt2=5;
 		try { DebugEnterDecision(2, false);
 		switch (input.LA(1))
@@ -334,7 +334,7 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 							{
 								int LA2_10 = input.LA(7);
 
-								if (((LA2_10>='0' && LA2_10<='9')||(LA2_10>='A' && LA2_10<='Z')||(LA2_10>='a' && LA2_10<='z')))
+								if (((LA2_10>='0' && LA2_10<='9')||(LA2_10>='A' && LA2_10<='Z')||LA2_10=='_'||(LA2_10>='a' && LA2_10<='z')))
 								{
 									alt2 = 4;
 								}
@@ -435,7 +435,6 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 			alt2 = 4;
 			}
 			break;
-		case '\t':
 		case '\n':
 		case ' ':
 			{
@@ -464,19 +463,19 @@ public partial class WebIDLLexer : Antlr.Runtime.Lexer
 			break;
 		case 2:
 			DebugEnterAlt(2);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:20: BLOCK_OPEN
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:20: OPEN_BLOCK
 			{
 			DebugLocation(1, 20);
-			mBLOCK_OPEN(); 
+			mOPEN_BLOCK(); 
 
 			}
 			break;
 		case 3:
 			DebugEnterAlt(3);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:31: BLOCK_CLOSE
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:1:31: CLOSE_BLOCK
 			{
 			DebugLocation(1, 31);
-			mBLOCK_CLOSE(); 
+			mCLOSE_BLOCK(); 
 
 			}
 			break;
