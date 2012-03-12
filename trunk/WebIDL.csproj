@@ -40,6 +40,8 @@
     <Compile Include="Grammar\WebIDLParser.cs" />
     <Compile Include="Grammar\WebIDLLexer.cs" />
     <Compile Include="Grammar\WebIDLLexer.FIX.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="IDefinible.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

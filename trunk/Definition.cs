@@ -22,14 +22,50 @@ using System.IO;
 using System.Collections.Generic;
 using Antlr.Runtime.Tree;
 using Antlr.Runtime;
+using System.Collections.ObjectModel;
 
 namespace WebIDL
 {
 	public class Definition
 	{
+		private readonly List<Module> modules = new List<Module>();
+		private readonly Dictionary<string,IDefinible> members = new Dictionary<string, IDefinible>();
+		
+		
+		public ReadOnlyCollection<Module> Modules
+		{
+			get
+			{
+				return new ReadOnlyCollection<Module>( modules);
+			}
+		}
+		
+		public IDefinible this[string name]
+		{
+			get
+			{
+				
+			return this.members[name];
+			}
+		}
+		
+		
 		public Definition(string sourcetext)
 		{
 			var tree = createFromString(sourcetext);
+			
+			foreach(var child in tree.Children)
+			{
+				if(child.Type == Grammar.WebIDLLexer.KW_MODULE)
+				{
+					var newmodule = new Module( child.GetChild(0).Text);
+					
+					modules.Add(newmodule);
+					members.Add(newmodule.Name, newmodule);
+					
+				}
+			}
+			
 		}
 		
 		private static CommonTree createFromString(string sourcetext)
@@ -42,13 +78,7 @@ namespace WebIDL
 			
 			var grammar = new Grammar.WebIDLParser(tokens);
 			
-			var lolo = (CommonTree) grammar.fileDef().Tree;
-			
-
-			return lolo;
-			
-			
-			
+			return (CommonTree) grammar.fileDef().Tree;
 		}
 	}
 		
