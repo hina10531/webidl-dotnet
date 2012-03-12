@@ -30,7 +30,7 @@ namespace WebIDL.Test
 		{
 			var definition = new Definition("module a {};");
 			
-			Assert.AreEqual(definition.Modules[0].Name, "a");
+			Assert.AreEqual("a",definition.Modules[0].Name);
 			Assert.AreSame(definition.Modules[0], definition["a"]);
 			Assert.AreSame(definition.Modules[0].Container, definition);
 			
@@ -49,7 +49,7 @@ namespace WebIDL.Test
 		{
 			var definition = new Definition("module a{ module b{};};");
 			
-			Assert.AreEqual(definition.Modules[0].Modules[0].Name,"b"); 
+			Assert.AreEqual("b",definition.Modules[0].Modules[0].Name); 
 			
 		}
 		
@@ -58,10 +58,27 @@ namespace WebIDL.Test
 		{
 			var definition = new Definition("module a{ module b{};}; module a{ module c{};};");
 			
-			Assert.AreEqual(definition.Modules.Count, 1);
+			Assert.AreEqual(1,definition.Modules.Count);
 			Assert.AreEqual(definition.Modules[0].Modules.Count,2);
-			Assert.AreEqual( definition.Modules[0].Modules[0].Name,"b");
-			Assert.AreEqual( definition.Modules[0].Modules[1].Name,"c");
+			Assert.AreEqual("b",definition.Modules[0].Modules[0].Name);
+			Assert.AreEqual("c",definition.Modules[0].Modules[1].Name);
+		}
+		
+		
+		[Test()]
+		public void SingleLineComment()
+		{
+			var definition = new Definition("//testtesttest\nmodule a{};");
+			Assert.IsNotNull(definition["a"]);
+		}
+		
+		[Test()]
+		public void MultiLineComment()
+		{
+			var definition = new Definition("module a{}; /* module b{}; */");
+			Assert.AreEqual(definition.Modules.Count,1);
+			Assert.AreEqual("a",definition["a"].Name);
+			Assert.IsNull(definition["b"]);
 		}
 	}
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-12 19:36:27
+// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-12 20:22:09
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -35,14 +35,15 @@ namespace  WebIDL.Grammar
 public partial class WebIDLParser : Antlr.Runtime.Parser
 {
 	internal static readonly string[] tokenNames = new string[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "CLOSE_BLOCK", "ID", "KW_MODULE", "OPEN_BLOCK", "WS"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "CLOSE_BLOCK", "COMMENT", "ID", "KW_MODULE", "OPEN_BLOCK", "WS"
 	};
 	public const int EOF=-1;
 	public const int CLOSE_BLOCK=4;
-	public const int ID=5;
-	public const int KW_MODULE=6;
-	public const int OPEN_BLOCK=7;
-	public const int WS=8;
+	public const int COMMENT=5;
+	public const int ID=6;
+	public const int KW_MODULE=7;
+	public const int OPEN_BLOCK=8;
+	public const int WS=9;
 
 	public WebIDLParser(ITokenStream input)
 		: this(input, new RecognizerSharedState())
@@ -279,7 +280,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 
 			{
 			// AST REWRITE
-			// elements: ID, moduleContent, KW_MODULE
+			// elements: moduleContent, ID, KW_MODULE
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -426,7 +427,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 
 			{
 			// AST REWRITE
-			// elements: moduleDef, OPEN_BLOCK
+			// elements: OPEN_BLOCK, moduleDef
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -503,13 +504,13 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 	#region Follow sets
 	private static class Follow
 	{
-		public static readonly BitSet _moduleDef_in_fileDef51 = new BitSet(new ulong[]{0x40UL});
+		public static readonly BitSet _moduleDef_in_fileDef51 = new BitSet(new ulong[]{0x80UL});
 		public static readonly BitSet _EOF_in_fileDef54 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _KW_MODULE_in_moduleDef73 = new BitSet(new ulong[]{0x20UL});
-		public static readonly BitSet _ID_in_moduleDef75 = new BitSet(new ulong[]{0x80UL});
+		public static readonly BitSet _KW_MODULE_in_moduleDef73 = new BitSet(new ulong[]{0x40UL});
+		public static readonly BitSet _ID_in_moduleDef75 = new BitSet(new ulong[]{0x100UL});
 		public static readonly BitSet _moduleContent_in_moduleDef77 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _OPEN_BLOCK_in_moduleContent97 = new BitSet(new ulong[]{0x50UL});
-		public static readonly BitSet _moduleDef_in_moduleContent99 = new BitSet(new ulong[]{0x50UL});
+		public static readonly BitSet _OPEN_BLOCK_in_moduleContent97 = new BitSet(new ulong[]{0x90UL});
+		public static readonly BitSet _moduleDef_in_moduleContent99 = new BitSet(new ulong[]{0x90UL});
 		public static readonly BitSet _CLOSE_BLOCK_in_moduleContent102 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
