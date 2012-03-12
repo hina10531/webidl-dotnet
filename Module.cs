@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using Antlr.Runtime.Tree;
 
 namespace WebIDL
 {
@@ -42,10 +43,16 @@ namespace WebIDL
 			}
 		}
 		
-		internal Module(string name, IContainer container)
+		internal Module(CommonTree tree, IContainer container)
 		{
-			this.name = name;
+			this.name = tree.Text;
 			this.container = container;
+			//this.Append((CommonTree) ((CommonTree)tree.Children[1]).Children );
+		}
+		
+		internal void Append(CommonTree tree)
+		{
+			
 		}
 	}
 }
