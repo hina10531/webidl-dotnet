@@ -27,14 +27,15 @@ options {
 @lexer::namespace { WebIDL.Grammar }
 
 public fileDef
-	:	moduleDef* EOF -> moduleDef*;
+	:	moduleDef* EOF -> ^(EOF moduleDef*);
 
 
 moduleDef
 	:	KW_MODULE ID moduleContent -> ^(KW_MODULE ID moduleContent);
 	
 moduleContent
-	:	OPEN_BLOCK  CLOSE_BLOCK -> ^(OPEN_BLOCK)*;
+	:	OPEN_BLOCK moduleDef* CLOSE_BLOCK ->  ^(OPEN_BLOCK moduleDef*)*;
+
 
 
 KW_MODULE

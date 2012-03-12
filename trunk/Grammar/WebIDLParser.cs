@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-11 23:53:05
+// $ANTLR 3.4 /home/juanse/Proyectos/webidl-dotnet/WebIDL.g 2012-03-12 19:23:05
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -87,7 +87,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 	partial void LeaveRule_fileDef();
 
 	// $ANTLR start "fileDef"
-	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:10:8: public fileDef : ( moduleDef )* EOF -> ( moduleDef )* ;
+	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:29:8: public fileDef : ( moduleDef )* EOF -> ^( EOF ( moduleDef )* ) ;
 	[GrammarRule("fileDef")]
 	public AstParserRuleReturnScope<object, IToken> fileDef()
 	{
@@ -106,15 +106,15 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 		RewriteRuleITokenStream stream_EOF=new RewriteRuleITokenStream(adaptor,"token EOF");
 		RewriteRuleSubtreeStream stream_moduleDef=new RewriteRuleSubtreeStream(adaptor,"rule moduleDef");
 		try { DebugEnterRule(GrammarFileName, "fileDef");
-		DebugLocation(10, 31);
+		DebugLocation(29, 38);
 		try
 		{
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:11:2: ( ( moduleDef )* EOF -> ( moduleDef )* )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:2: ( ( moduleDef )* EOF -> ^( EOF ( moduleDef )* ) )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:11:4: ( moduleDef )* EOF
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:4: ( moduleDef )* EOF
 			{
-			DebugLocation(11, 4);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:11:4: ( moduleDef )*
+			DebugLocation(30, 4);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:4: ( moduleDef )*
 			try { DebugEnterSubRule(1);
 			while (true)
 			{
@@ -133,10 +133,10 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:11:4: moduleDef
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:4: moduleDef
 					{
-					DebugLocation(11, 4);
-					PushFollow(Follow._moduleDef_in_fileDef48);
+					DebugLocation(30, 4);
+					PushFollow(Follow._moduleDef_in_fileDef51);
 					moduleDef1=moduleDef();
 					PopFollow();
 
@@ -155,15 +155,15 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 
 			} finally { DebugExitSubRule(1); }
 
-			DebugLocation(11, 15);
-			EOF2=(IToken)Match(input,EOF,Follow._EOF_in_fileDef51);  
+			DebugLocation(30, 15);
+			EOF2=(IToken)Match(input,EOF,Follow._EOF_in_fileDef54);  
 			stream_EOF.Add(EOF2);
 
 
 
 			{
 			// AST REWRITE
-			// elements: moduleDef
+			// elements: moduleDef, EOF
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -173,17 +173,27 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.Tree:null);
 
 			root_0 = (object)adaptor.Nil();
-			// 11:19: -> ( moduleDef )*
+			// 30:19: -> ^( EOF ( moduleDef )* )
 			{
-				DebugLocation(11, 22);
-				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:11:22: ( moduleDef )*
+				DebugLocation(30, 22);
+				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:22: ^( EOF ( moduleDef )* )
+				{
+				object root_1 = (object)adaptor.Nil();
+				DebugLocation(30, 24);
+				root_1 = (object)adaptor.BecomeRoot(stream_EOF.NextNode(), root_1);
+
+				DebugLocation(30, 28);
+				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:30:28: ( moduleDef )*
 				while ( stream_moduleDef.HasNext )
 				{
-					DebugLocation(11, 22);
-					adaptor.AddChild(root_0, stream_moduleDef.NextTree());
+					DebugLocation(30, 28);
+					adaptor.AddChild(root_1, stream_moduleDef.NextTree());
 
 				}
 				stream_moduleDef.Reset();
+
+				adaptor.AddChild(root_0, root_1);
+				}
 
 			}
 
@@ -211,7 +221,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			LeaveRule("fileDef", 1);
 			LeaveRule_fileDef();
 		}
-		DebugLocation(11, 31);
+		DebugLocation(30, 38);
 		} finally { DebugExitRule(GrammarFileName, "fileDef"); }
 		return retval;
 
@@ -222,7 +232,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 	partial void LeaveRule_moduleDef();
 
 	// $ANTLR start "moduleDef"
-	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:14:1: moduleDef : KW_MODULE ID moduleContent -> ^( KW_MODULE ID moduleContent ) ;
+	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:33:1: moduleDef : KW_MODULE ID moduleContent -> ^( KW_MODULE ID moduleContent ) ;
 	[GrammarRule("moduleDef")]
 	private AstParserRuleReturnScope<object, IToken> moduleDef()
 	{
@@ -244,23 +254,23 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 		RewriteRuleITokenStream stream_ID=new RewriteRuleITokenStream(adaptor,"token ID");
 		RewriteRuleSubtreeStream stream_moduleContent=new RewriteRuleSubtreeStream(adaptor,"rule moduleContent");
 		try { DebugEnterRule(GrammarFileName, "moduleDef");
-		DebugLocation(14, 62);
+		DebugLocation(33, 62);
 		try
 		{
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:15:2: ( KW_MODULE ID moduleContent -> ^( KW_MODULE ID moduleContent ) )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:34:2: ( KW_MODULE ID moduleContent -> ^( KW_MODULE ID moduleContent ) )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:15:4: KW_MODULE ID moduleContent
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:34:4: KW_MODULE ID moduleContent
 			{
-			DebugLocation(15, 4);
-			KW_MODULE3=(IToken)Match(input,KW_MODULE,Follow._KW_MODULE_in_moduleDef66);  
+			DebugLocation(34, 4);
+			KW_MODULE3=(IToken)Match(input,KW_MODULE,Follow._KW_MODULE_in_moduleDef73);  
 			stream_KW_MODULE.Add(KW_MODULE3);
 
-			DebugLocation(15, 14);
-			ID4=(IToken)Match(input,ID,Follow._ID_in_moduleDef68);  
+			DebugLocation(34, 14);
+			ID4=(IToken)Match(input,ID,Follow._ID_in_moduleDef75);  
 			stream_ID.Add(ID4);
 
-			DebugLocation(15, 17);
-			PushFollow(Follow._moduleContent_in_moduleDef70);
+			DebugLocation(34, 17);
+			PushFollow(Follow._moduleContent_in_moduleDef77);
 			moduleContent5=moduleContent();
 			PopFollow();
 
@@ -269,7 +279,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 
 			{
 			// AST REWRITE
-			// elements: ID, KW_MODULE, moduleContent
+			// elements: moduleContent, KW_MODULE, ID
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -279,18 +289,18 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.Tree:null);
 
 			root_0 = (object)adaptor.Nil();
-			// 15:31: -> ^( KW_MODULE ID moduleContent )
+			// 34:31: -> ^( KW_MODULE ID moduleContent )
 			{
-				DebugLocation(15, 34);
-				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:15:34: ^( KW_MODULE ID moduleContent )
+				DebugLocation(34, 34);
+				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:34:34: ^( KW_MODULE ID moduleContent )
 				{
 				object root_1 = (object)adaptor.Nil();
-				DebugLocation(15, 36);
+				DebugLocation(34, 36);
 				root_1 = (object)adaptor.BecomeRoot(stream_KW_MODULE.NextNode(), root_1);
 
-				DebugLocation(15, 46);
+				DebugLocation(34, 46);
 				adaptor.AddChild(root_1, stream_ID.NextNode());
-				DebugLocation(15, 49);
+				DebugLocation(34, 49);
 				adaptor.AddChild(root_1, stream_moduleContent.NextTree());
 
 				adaptor.AddChild(root_0, root_1);
@@ -322,7 +332,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			LeaveRule("moduleDef", 2);
 			LeaveRule_moduleDef();
 		}
-		DebugLocation(15, 62);
+		DebugLocation(34, 62);
 		} finally { DebugExitRule(GrammarFileName, "moduleDef"); }
 		return retval;
 
@@ -333,7 +343,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 	partial void LeaveRule_moduleContent();
 
 	// $ANTLR start "moduleContent"
-	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:17:1: moduleContent : OPEN_BLOCK CLOSE_BLOCK -> ( ^( OPEN_BLOCK ) )* ;
+	// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:36:1: moduleContent : OPEN_BLOCK ( moduleDef )* CLOSE_BLOCK -> ( ^( OPEN_BLOCK ( moduleDef )* ) )* ;
 	[GrammarRule("moduleContent")]
 	private AstParserRuleReturnScope<object, IToken> moduleContent()
 	{
@@ -346,33 +356,77 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 		object root_0 = default(object);
 
 		IToken OPEN_BLOCK6 = default(IToken);
-		IToken CLOSE_BLOCK7 = default(IToken);
+		IToken CLOSE_BLOCK8 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> moduleDef7 = default(AstParserRuleReturnScope<object, IToken>);
 
 		object OPEN_BLOCK6_tree = default(object);
-		object CLOSE_BLOCK7_tree = default(object);
+		object CLOSE_BLOCK8_tree = default(object);
 		RewriteRuleITokenStream stream_CLOSE_BLOCK=new RewriteRuleITokenStream(adaptor,"token CLOSE_BLOCK");
 		RewriteRuleITokenStream stream_OPEN_BLOCK=new RewriteRuleITokenStream(adaptor,"token OPEN_BLOCK");
+		RewriteRuleSubtreeStream stream_moduleDef=new RewriteRuleSubtreeStream(adaptor,"rule moduleDef");
 		try { DebugEnterRule(GrammarFileName, "moduleContent");
-		DebugLocation(17, 44);
+		DebugLocation(36, 66);
 		try
 		{
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:18:2: ( OPEN_BLOCK CLOSE_BLOCK -> ( ^( OPEN_BLOCK ) )* )
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:2: ( OPEN_BLOCK ( moduleDef )* CLOSE_BLOCK -> ( ^( OPEN_BLOCK ( moduleDef )* ) )* )
 			DebugEnterAlt(1);
-			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:18:4: OPEN_BLOCK CLOSE_BLOCK
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:4: OPEN_BLOCK ( moduleDef )* CLOSE_BLOCK
 			{
-			DebugLocation(18, 4);
-			OPEN_BLOCK6=(IToken)Match(input,OPEN_BLOCK,Follow._OPEN_BLOCK_in_moduleContent90);  
+			DebugLocation(37, 4);
+			OPEN_BLOCK6=(IToken)Match(input,OPEN_BLOCK,Follow._OPEN_BLOCK_in_moduleContent97);  
 			stream_OPEN_BLOCK.Add(OPEN_BLOCK6);
 
-			DebugLocation(18, 16);
-			CLOSE_BLOCK7=(IToken)Match(input,CLOSE_BLOCK,Follow._CLOSE_BLOCK_in_moduleContent93);  
-			stream_CLOSE_BLOCK.Add(CLOSE_BLOCK7);
+			DebugLocation(37, 15);
+			// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:15: ( moduleDef )*
+			try { DebugEnterSubRule(2);
+			while (true)
+			{
+				int alt2=2;
+				try { DebugEnterDecision(2, false);
+				int LA2_0 = input.LA(1);
+
+				if ((LA2_0==KW_MODULE))
+				{
+					alt2 = 1;
+				}
+
+
+				} finally { DebugExitDecision(2); }
+				switch ( alt2 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:15: moduleDef
+					{
+					DebugLocation(37, 15);
+					PushFollow(Follow._moduleDef_in_moduleContent99);
+					moduleDef7=moduleDef();
+					PopFollow();
+
+					stream_moduleDef.Add(moduleDef7.Tree);
+
+					}
+					break;
+
+				default:
+					goto loop2;
+				}
+			}
+
+			loop2:
+				;
+
+			} finally { DebugExitSubRule(2); }
+
+			DebugLocation(37, 26);
+			CLOSE_BLOCK8=(IToken)Match(input,CLOSE_BLOCK,Follow._CLOSE_BLOCK_in_moduleContent102);  
+			stream_CLOSE_BLOCK.Add(CLOSE_BLOCK8);
 
 
 
 			{
 			// AST REWRITE
-			// elements: OPEN_BLOCK
+			// elements: moduleDef, OPEN_BLOCK
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -382,18 +436,28 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.Tree:null);
 
 			root_0 = (object)adaptor.Nil();
-			// 18:28: -> ( ^( OPEN_BLOCK ) )*
+			// 37:38: -> ( ^( OPEN_BLOCK ( moduleDef )* ) )*
 			{
-				DebugLocation(18, 31);
-				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:18:31: ( ^( OPEN_BLOCK ) )*
+				DebugLocation(37, 42);
+				// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:42: ( ^( OPEN_BLOCK ( moduleDef )* ) )*
 				while ( stream_OPEN_BLOCK.HasNext )
 				{
-					DebugLocation(18, 31);
-					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:18:31: ^( OPEN_BLOCK )
+					DebugLocation(37, 42);
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:42: ^( OPEN_BLOCK ( moduleDef )* )
 					{
 					object root_1 = (object)adaptor.Nil();
-					DebugLocation(18, 33);
+					DebugLocation(37, 44);
 					root_1 = (object)adaptor.BecomeRoot(stream_OPEN_BLOCK.NextNode(), root_1);
+
+					DebugLocation(37, 55);
+					// /home/juanse/Proyectos/webidl-dotnet/WebIDL.g:37:55: ( moduleDef )*
+					while ( stream_moduleDef.HasNext )
+					{
+						DebugLocation(37, 55);
+						adaptor.AddChild(root_1, stream_moduleDef.NextTree());
+
+					}
+					stream_moduleDef.Reset();
 
 					adaptor.AddChild(root_0, root_1);
 					}
@@ -427,7 +491,7 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 			LeaveRule("moduleContent", 3);
 			LeaveRule_moduleContent();
 		}
-		DebugLocation(18, 44);
+		DebugLocation(37, 66);
 		} finally { DebugExitRule(GrammarFileName, "moduleContent"); }
 		return retval;
 
@@ -439,13 +503,14 @@ public partial class WebIDLParser : Antlr.Runtime.Parser
 	#region Follow sets
 	private static class Follow
 	{
-		public static readonly BitSet _moduleDef_in_fileDef48 = new BitSet(new ulong[]{0x40UL});
-		public static readonly BitSet _EOF_in_fileDef51 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _KW_MODULE_in_moduleDef66 = new BitSet(new ulong[]{0x20UL});
-		public static readonly BitSet _ID_in_moduleDef68 = new BitSet(new ulong[]{0x80UL});
-		public static readonly BitSet _moduleContent_in_moduleDef70 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _OPEN_BLOCK_in_moduleContent90 = new BitSet(new ulong[]{0x10UL});
-		public static readonly BitSet _CLOSE_BLOCK_in_moduleContent93 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _moduleDef_in_fileDef51 = new BitSet(new ulong[]{0x40UL});
+		public static readonly BitSet _EOF_in_fileDef54 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _KW_MODULE_in_moduleDef73 = new BitSet(new ulong[]{0x20UL});
+		public static readonly BitSet _ID_in_moduleDef75 = new BitSet(new ulong[]{0x80UL});
+		public static readonly BitSet _moduleContent_in_moduleDef77 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _OPEN_BLOCK_in_moduleContent97 = new BitSet(new ulong[]{0x50UL});
+		public static readonly BitSet _moduleDef_in_moduleContent99 = new BitSet(new ulong[]{0x50UL});
+		public static readonly BitSet _CLOSE_BLOCK_in_moduleContent102 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }

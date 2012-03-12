@@ -40,7 +40,7 @@ namespace WebIDL.Test
 		public void TwoModulesTest()
 		{
 			var definition = new Definition("module a{}; module b{};");
-			Assert.AreEqual(definition["a"].GetType(),definition.Modules[1]);			
+			Assert.AreEqual(definition["a"].GetType(),definition.Modules[1].GetType());			
 			Assert.AreEqual(definition["b"], definition.Modules[1]);
 		}
 		
