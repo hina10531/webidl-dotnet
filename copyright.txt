@@ -1,3 +1,5 @@
+webidl-dotnet: WebIDL file parser for DotNET platform.
+
 Copyright (C) 2012  Juan Manuel Lallana<juan.manuel.lallana@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
