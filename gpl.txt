@@ -1,5 +1,3 @@
-Copyright (C) 2012  Juan Manuel Lallana<juan.manuel.lallana@gmail.com>
-
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
