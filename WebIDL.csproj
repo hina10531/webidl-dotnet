@@ -42,6 +42,7 @@
     <Compile Include="Grammar\WebIDLLexer.FIX.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="IDefinible.cs" />
+    <Compile Include="IContainer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

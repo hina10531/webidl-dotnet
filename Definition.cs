@@ -26,7 +26,7 @@ using System.Collections.ObjectModel;
 
 namespace WebIDL
 {
-	public class Definition
+	public class Definition : IContainer
 	{
 		private readonly List<Module> modules = new List<Module>();
 		private readonly Dictionary<string,IDefinible> members = new Dictionary<string, IDefinible>();
@@ -58,7 +58,7 @@ namespace WebIDL
 			{
 				if(child.Type == Grammar.WebIDLLexer.KW_MODULE)
 				{
-					var newmodule = new Module( child.GetChild(0).Text);
+					var newmodule = new Module(child.GetChild(0).Text, this);
 					
 					modules.Add(newmodule);
 					members.Add(newmodule.Name, newmodule);

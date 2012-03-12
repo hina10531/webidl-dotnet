@@ -24,6 +24,7 @@ namespace WebIDL
 	public class Module : IDefinible
 	{
 		private string name;
+		private IContainer container;
 		
 		public string Name
 		{
@@ -33,9 +34,18 @@ namespace WebIDL
 			}
 		}
 		
-		internal Module(string name)
+		public IContainer Container
+		{
+			get
+			{
+				return this.container;
+			}
+		}
+		
+		internal Module(string name, IContainer container)
 		{
 			this.name = name;
+			this.container = container;
 		}
 	}
 }

@@ -32,9 +32,9 @@ namespace WebIDL.Test
 			
 			Assert.AreEqual(definition.Modules[0].Name, "a");
 			Assert.AreEqual(definition.Modules[1].Name, "b");
-			
-			
 			Assert.AreSame(definition.Modules[0], definition["a"]);
+			Assert.AreSame(definition.Modules[0].Container, definition);
+			
 		}
 	}
 }
