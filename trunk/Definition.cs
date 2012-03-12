@@ -48,8 +48,7 @@ namespace WebIDL
 		{
 			get
 			{
-				
-			return this.members[name];
+				return this.members.ContainsKey(name) ? this.members[name] : null;
 			}
 		}
 		
