@@ -54,7 +54,19 @@ namespace WebIDL
 		{
 			var tree = createFromString(sourcetext);
 			
-			foreach(var child in tree.Children)
+			IList<ITree> children;
+			if(tree.IsNil)
+			{
+				children = tree.Children;
+			}
+			else
+			{
+				children = new List<ITree>();
+				children.Add(tree);
+			}
+			
+			
+			foreach(var child in children)
 			{
 				if(child.Type == Grammar.WebIDLLexer.KW_MODULE)
 				{
