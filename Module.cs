@@ -18,23 +18,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using NUnit.Framework;
 
-namespace WebIDL.Test
+namespace WebIDL
 {
-	[TestFixture()]
-	public class DefinitionTest
+	public class Module : IDefinible
 	{
-		[Test()]
-		public void BasicTest()
+		private string name;
+		
+		public string Name
 		{
-			var definition = new Definition("module a {}; module b{};");
-			
-			Assert.AreEqual(definition.Modules[0].Name, "a");
-			Assert.AreEqual(definition.Modules[1].Name, "b");
-			
-			
-			Assert.AreSame(definition.Modules[0], definition["a"]);
+			get
+			{
+				return this.name;
+			}
+		}
+		
+		internal Module(string name)
+		{
+			this.name = name;
 		}
 	}
 }
