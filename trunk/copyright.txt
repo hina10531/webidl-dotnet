@@ -1,4 +1,5 @@
-webidl-dotnet: WebIDL file parser for DotNET platform.
+webidl-dotnet (http://code.google.com/p/webidl-dotnet/)
+WebIDL file parser for DotNET platform.
 
 Copyright (C) 2012  Juan Manuel Lallana<juan.manuel.lallana@gmail.com>
 
