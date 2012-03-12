@@ -36,12 +36,20 @@ namespace WebIDL.Test
 			
 		}
 		
+		[Test()]
 		public void TwoModulesTest()
 		{
 			var definition = new Definition("module a{}; module b{};");
 			Assert.AreEqual(definition["a"].GetType(),definition.Modules[1]);			
 			Assert.AreEqual(definition["b"], definition.Modules[1]);
+		}
+		
+		[Test()]
+		public void RepeatModuleIsSame()
+		{
+			var definition = new Definition("module a{}; module a{};");
 			
+			Assert.AreEqual(definition.Modules.Count, 1);
 		}
 	}
 }

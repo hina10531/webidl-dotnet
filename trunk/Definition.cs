@@ -28,7 +28,8 @@ namespace WebIDL
 {
 	public class Definition : IContainer
 	{
-		private readonly List<Module> modules = new List<Module>();
+		
+		private readonly Dictionary<string,Module> modules = new Dictionary<string,Module>();
 		private readonly Dictionary<string,IDefinible> members = new Dictionary<string, IDefinible>();
 		
 		
@@ -36,7 +37,10 @@ namespace WebIDL
 		{
 			get
 			{
-				return new ReadOnlyCollection<Module>( modules);
+				var rv = new List<Module>();
+				foreach(var val in modules.Values)
+					rv.Add(val);
+				return new ReadOnlyCollection<Module>(rv);
 			}
 		}
 		
@@ -70,10 +74,26 @@ namespace WebIDL
 			{
 				if(child.Type == Grammar.WebIDLLexer.KW_MODULE)
 				{
-					var newmodule = new Module(child.GetChild(0).Text, this);
+					var modulename = child.GetChild(0).Text;
 					
-					modules.Add(newmodule);
-					members.Add(newmodule.Name, newmodule);
+					if(modules.ContainsKey(modulename))
+					{
+						modules[modulename].Append((CommonTree)child.GetChild(1));
+					}
+					else
+					{
+						var newmodule = new Module((CommonTree)child.GetChild(0), this);
+						modules.Add(newmodule.Name, newmodule);
+						members.Add(newmodule.Name, newmodule);
+					}
+					
+					
+					
+					
+					
+					
+					
+					
 					
 				}
 			}
