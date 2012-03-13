@@ -28,30 +28,33 @@ namespace WebIDL
 {
 	public class Definition : IContainer
 	{
-		
 		private readonly Dictionary<string,Module> modules = new Dictionary<string,Module>();
 		private readonly Dictionary<string,IDefinible> members = new Dictionary<string, IDefinible>();
 		
 		
-		public ReadOnlyCollection<Module> Modules
+		public Module GetModule(string name)
 		{
-			get
-			{
-				var rv = new List<Module>();
-				foreach(var val in modules.Values)
-					rv.Add(val);
-				return new ReadOnlyCollection<Module>(rv);
-			}
+			return modules[name];
 		}
 		
-		public IDefinible this[string name]
+		private static T[] GetValuesArray<T>( Dictionary<string,T> dict)
 		{
-			get
-			{
-				return this.members.ContainsKey(name) ? this.members[name] : null;
-			}
+			var aux = new List<T>();
+			foreach(var item in dict)
+				aux.Add(item.Value);
+			return aux.ToArray();
 		}
 		
+		public Module[] GetModules()
+		{
+			return GetValuesArray<Module>(modules);
+		}
+		
+		
+		public IDefinible GetMember(string name)
+		{
+			return members[name];
+		}
 		
 		internal Definition(CommonTree tree)
 		{
