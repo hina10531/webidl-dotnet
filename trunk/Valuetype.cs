@@ -6,7 +6,7 @@ namespace WebIDL
 	public class Valuetype: IDefinible
 	{
 		private string name;
-		public Valuetype(CommonTree tree, IContainer container) 
+		internal Valuetype(CommonTree tree, IContainer container) 
 		{
 			this.name = tree.Children[0].Text;
 		}
