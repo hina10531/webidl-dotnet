@@ -30,10 +30,13 @@ namespace WebIDL
 	{
 		private readonly Dictionary<string,Module> modules = new Dictionary<string,Module>();
 		private readonly Dictionary<string,IDefinible> members = new Dictionary<string, IDefinible>();
+		private readonly Dictionary<string,Valuetype> valuetypes = new Dictionary<string, Valuetype>();
 		
 		
 		public Module GetModule(string name)
 		{
+			if(!modules.ContainsKey(name))
+				return null;
 			return modules[name];
 		}
 		
@@ -50,9 +53,15 @@ namespace WebIDL
 			return GetValuesArray<Module>(modules);
 		}
 		
+		public Valuetype GetValuetype(string name)
+		{
+			return valuetypes[name];
+		}
 		
 		public IDefinible GetMember(string name)
 		{
+			if(!members.ContainsKey(name))
+				return null;
 			return members[name];
 		}
 		
@@ -82,6 +91,13 @@ namespace WebIDL
 						modules.Add(newmodule.Name, newmodule);
 						members.Add(newmodule.Name, newmodule);
 					}
+				}
+				else if(child.Type == Grammar.WebIDLLexer.KW_VALUETYPE)
+				{
+					var newvaluetype = new Valuetype((CommonTree) child, this);
+					
+					valuetypes.Add(newvaluetype.Name, newvaluetype);
+					members.Add(newvaluetype.Name, newvaluetype);
 				}
 			}
 		}

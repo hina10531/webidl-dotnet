@@ -43,6 +43,7 @@
     <Compile Include="Module.cs" />
     <Compile Include="IDefinible.cs" />
     <Compile Include="IContainer.cs" />
+    <Compile Include="Valuetype.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -80,6 +80,16 @@ namespace WebIDL.Test
 			Assert.AreEqual("a",definition.GetMember("a").Name);
 			Assert.IsNull(definition.GetMember("b"));
 		}
+		
+		[Test()]
+		public void ValuetypeTest()
+		{
+			var definition = new Definition("module a{ valuetype b; }; valuetype c;");
+			
+			Assert.AreEqual("c",definition.GetValuetype("c").Name);
+			Assert.IsInstanceOf(typeof(Valuetype), definition.GetModule("a").GetMember("b"));
+			
+		}
 	}
 }
 

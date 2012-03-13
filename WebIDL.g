@@ -27,19 +27,27 @@ options {
 @lexer::namespace { WebIDL.Grammar }
 
 public fileDef
-	:	moduleDef* EOF -> ^(EOF moduleDef*);
+	:	(moduleElement)* EOF -> ^(EOF moduleElement*);
 
 
 moduleDef
 	:	KW_MODULE ID moduleContent -> ^(KW_MODULE ID moduleContent);
 	
 moduleContent
-	:	OPEN_BLOCK moduleDef* CLOSE_BLOCK ->  ^(OPEN_BLOCK moduleDef*)*;
+	:	OPEN_BLOCK moduleElement* CLOSE_BLOCK ->  ^(OPEN_BLOCK moduleElement*)*;
 
+moduleElement
+	:	moduleDef | valuetypeDef;
+
+valuetypeDef
+	:	KW_VALUETYPE ID SEMICOLON -> ^(KW_VALUETYPE ID);
 
 
 KW_MODULE
 	:	'module';
+
+KW_VALUETYPE
+	:	'valuetype';
 
 
 OPEN_BLOCK
@@ -47,6 +55,8 @@ OPEN_BLOCK
 CLOSE_BLOCK
 	:	'};';
 
+SEMICOLON
+	:	';';
 
 ID	:	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 
