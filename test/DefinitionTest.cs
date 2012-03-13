@@ -30,9 +30,9 @@ namespace WebIDL.Test
 		{
 			var definition = new Definition("module a {};");
 			
-			Assert.AreEqual("a",definition.Modules[0].Name);
-			Assert.AreSame(definition.Modules[0], definition["a"]);
-			Assert.AreSame(definition.Modules[0].Container, definition);
+			Assert.AreEqual("a",definition.GetModules()[0].Name);
+			Assert.AreSame(definition.GetModules()[0], definition.GetMember("a"));
+			Assert.AreSame(definition.GetModules()[0].Container, definition);
 			
 		}
 		
@@ -40,8 +40,8 @@ namespace WebIDL.Test
 		public void TwoModulesTest()
 		{
 			var definition = new Definition("module a{}; module b{};");
-			Assert.AreEqual(definition["a"].GetType(),definition.Modules[1].GetType());			
-			Assert.AreEqual(definition["b"], definition.Modules[1]);
+			Assert.AreEqual(definition.GetMember("a").GetType(),definition.GetModules()[1].GetType());			
+			Assert.AreEqual(definition.GetMember("b"), definition.GetModules()[1]);
 		}
 		
 		[Test()]
@@ -49,7 +49,7 @@ namespace WebIDL.Test
 		{
 			var definition = new Definition("module a{ module b{};};");
 			
-			Assert.AreEqual("b",definition.Modules[0].Modules[0].Name); 
+			Assert.AreEqual("b",definition.GetModules()[0].GetModules()[0].Name); 
 			
 		}
 		
@@ -58,10 +58,10 @@ namespace WebIDL.Test
 		{
 			var definition = new Definition("module a{ module b{};}; module a{ module c{};};");
 			
-			Assert.AreEqual(1,definition.Modules.Count);
-			Assert.AreEqual(definition.Modules[0].Modules.Count,2);
-			Assert.AreEqual("b",definition.Modules[0].Modules[0].Name);
-			Assert.AreEqual("c",definition.Modules[0].Modules[1].Name);
+			Assert.AreEqual(1,definition.GetModules().Length);
+			Assert.AreEqual(definition.GetModules()[0].GetModules().Length,2);
+			Assert.AreEqual("b",definition.GetModules()[0].GetModules()[0].Name);
+			Assert.AreEqual("c",definition.GetModules()[0].GetModules()[1].Name);
 		}
 		
 		
@@ -69,16 +69,16 @@ namespace WebIDL.Test
 		public void SingleLineComment()
 		{
 			var definition = new Definition("//testtesttest\nmodule a{};");
-			Assert.IsNotNull(definition["a"]);
+			Assert.IsNotNull(definition.GetMember("a"));
 		}
 		
 		[Test()]
 		public void MultiLineComment()
 		{
 			var definition = new Definition("module a{}; /* module b{}; */");
-			Assert.AreEqual(definition.Modules.Count,1);
-			Assert.AreEqual("a",definition["a"].Name);
-			Assert.IsNull(definition["b"]);
+			Assert.AreEqual(definition.GetModules().Length,1);
+			Assert.AreEqual("a",definition.GetMember("a").Name);
+			Assert.IsNull(definition.GetMember("b"));
 		}
 	}
 }

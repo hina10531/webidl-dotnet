@@ -23,7 +23,7 @@ namespace WebIDL
 {
 	public interface IContainer
 	{
-		IDefinible this[string name] { get;}
+		IDefinible GetMember(string name);
 	}
 }
 
