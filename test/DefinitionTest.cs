@@ -24,7 +24,7 @@ namespace WebIDL.Test
 {
 	[TestFixture()]
 	public class DefinitionTest
-	{
+	{	
 		[Test()]
 		public void BasicTest()
 		{
@@ -59,7 +59,7 @@ namespace WebIDL.Test
 			var definition = new Definition("module a{ module b{};}; module a{ module c{};};");
 			
 			Assert.AreEqual(1,definition.GetModules().Length);
-			Assert.AreEqual(definition.GetModules()[0].GetModules().Length,2);
+			Assert.AreEqual(2,definition.GetModules()[0].GetModules().Length);
 			Assert.AreEqual("b",definition.GetModules()[0].GetModules()[0].Name);
 			Assert.AreEqual("c",definition.GetModules()[0].GetModules()[1].Name);
 		}
@@ -75,7 +75,7 @@ namespace WebIDL.Test
 		[Test()]
 		public void MultiLineComment()
 		{
-			var definition = new Definition("module a{}; /* module b{}; */");
+			var definition = new Definition("module a{}; /* module \nb\n{}; */");
 			Assert.AreEqual(definition.GetModules().Length,1);
 			Assert.AreEqual("a",definition.GetMember("a").Name);
 			Assert.IsNull(definition.GetMember("b"));
