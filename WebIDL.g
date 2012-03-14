@@ -1,22 +1,3 @@
-/*
-
-This file is part of webidl-dotnet.
-
-webidl-dotnet is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-*/
-
 grammar WebIDL;
 
 options {
@@ -26,48 +7,152 @@ options {
 @parser::namespace { WebIDL.Grammar }
 @lexer::namespace { WebIDL.Grammar }
 
-public fileDef
-	:	(moduleElement)* EOF -> ^(EOF moduleElement*);
+//GRAMMAR
 
+public documentDef 
+	:	(declaration)*
+		EOF
+	-> ^(EOF declaration*);
+
+declaration
+	:	  moduleDef
+		| interfaceDef
+		| interfacePredef
+		| constantDef 
+		| exceptionDef
+		| typedefDef
+		| valuetypeDef
+		| enumDef
+		| callbackDef
+		| dictionaryDef;
+
+interfaceMember
+	:	  constantDef
+		| attributeDef;
+
+exceptionMember
+	:	constantDef;
 
 moduleDef
-	:	KW_MODULE ID moduleContent -> ^(KW_MODULE ID moduleContent);
-	
-moduleContent
-	:	OPEN_BLOCK moduleElement* CLOSE_BLOCK ->  ^(OPEN_BLOCK moduleElement*)*;
+	:	KW_MODULE
+		ID
+		BLOCK
+		declaration*
+		CLOSE_BLOCK
+	-> ^(KW_MODULE ID ^(BLOCK declaration*));
 
-moduleElement
-	:	moduleDef | valuetypeDef;
+interfaceDef
+	:	KW_CALLBACK?
+		KW_PARTIAL?
+		KW_INTERFACE
+		ID
+		BLOCK
+		interfaceMember*
+		CLOSE_BLOCK
+	->	^(KW_INTERFACE ID ^(BLOCK interfaceMember*) KW_PARTIAL? KW_CALLBACK?);
+
+interfacePredef
+	:	KW_INTERFACE
+		ID
+		END_STMT
+	->	^(KW_INTERFACE ID);
+
+enumDef
+	:	KW_ENUM
+		ID
+		BLOCK
+		enumMembers
+		CLOSE_BLOCK
+	->	^(KW_ENUM ID ^(BLOCK enumMembers));
+
+dictionaryDef
+	:	KW_DICTIONARY
+		ID
+		BLOCK
+		CLOSE_BLOCK
+	->	^(KW_DICTIONARY ID  );
+
+enumMembers
+	:	STRING (',' STRING)*;
+
+
+constantDef
+	:	KW_CONSTANT
+		ID
+		END_STMT
+	-> ^(KW_CONSTANT ID);
+
+typedefDef
+	:	KW_TYPEDEF
+		ID
+		END_STMT
+	-> ^(KW_TYPEDEF ID);
+
+attributeDef
+	:	KW_READONLY?
+		KW_ATTRIBUTE
+		ID
+		END_STMT
+	-> ^(KW_ATTRIBUTE ID KW_READONLY?);
 
 valuetypeDef
-	:	KW_VALUETYPE ID SEMICOLON -> ^(KW_VALUETYPE ID);
+	:	KW_VALUETYPE
+		ID
+		END_STMT
+	-> ^(KW_VALUETYPE ID);
 
+callbackDef
+	:	KW_CALLBACK
+		ID
+		END_STMT
+	-> ^(KW_CALLBACK ID);
 
-KW_MODULE
-	:	'module';
+exceptionDef
+	:	KW_EXCEPTION
+		ID
+		BLOCK
+		exceptionMember*
+		CLOSE_BLOCK
+	-> ^(KW_EXCEPTION ID ^(BLOCK exceptionMember*));
 
-KW_VALUETYPE
-	:	'valuetype';
+//CONTROL KEYWORDS
+KW_MODULE		:	'module';
+KW_INTERFACE	:	'interface';
+KW_CONSTANT		:	'const';
+KW_EXCEPTION	:	'exception';
+KW_TYPEDEF		:	'typedef';
+KW_VALUETYPE	:	'valuetype';
+KW_ENUM			:	'enum';
+KW_CALLBACK		:	'callback';
+KW_ATTRIBUTE	:	'attribute';
+KW_DICTIONARY	:	'dictionary';
 
+//MODIFIERS
+KW_PARTIAL		:	'partial';
+KW_READONLY		:	'readonly';
 
-OPEN_BLOCK
-	:	'{';
-CLOSE_BLOCK
-	:	'};';
+//FLUSH CONTROL
+BLOCK		:	'{';
+CLOSE_BLOCK	:	'};';
+END_STMT	:	';';	
 
-SEMICOLON
-	:	';';
-
-ID	:	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
-
-COMMENT
-    :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-    |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-    ;
+//COMMON
+ID			:	'_'?('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 WS  :   ( ' '
         | '\t'
         | '\r'
         | '\n'
         ) {$channel=HIDDEN;}
+    ;
+
+// IST TRUE!!! 
+STRING
+    :  '"' ~('"')* '"'
+    ;
+
+//COMMENTS
+COMMENT
+    :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+    |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;

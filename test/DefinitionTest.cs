@@ -24,71 +24,13 @@ namespace WebIDL.Test
 {
 	[TestFixture()]
 	public class DefinitionTest
-	{	
+	{			
 		[Test()]
-		public void BasicTest()
+		public void newclasses()
 		{
-			var definition = new Definition("module a {};");
-			
-			Assert.AreEqual("a",definition.GetModules()[0].Name);
-			Assert.AreSame(definition.GetModules()[0], definition.GetMember("a"));
-			Assert.AreSame(definition.GetModules()[0].Container, definition);
-			
-		}
-		
-		[Test()]
-		public void TwoModulesTest()
-		{
-			var definition = new Definition("module a{}; module b{};");
-			Assert.AreEqual(definition.GetMember("a").GetType(),definition.GetModules()[1].GetType());			
-			Assert.AreEqual(definition.GetMember("b"), definition.GetModules()[1]);
-		}
-		
-		[Test()]
-		public void NestedModule()
-		{
-			var definition = new Definition("module a{ module b{};};");
-			
-			Assert.AreEqual("b",definition.GetModules()[0].GetModules()[0].Name); 
-			
-		}
-		
-		[Test()]
-		public void RepeatModuleIsSame()
-		{
-			var definition = new Definition("module a{ module b{};}; module a{ module c{};};");
-			
-			Assert.AreEqual(1,definition.GetModules().Length);
-			Assert.AreEqual(2,definition.GetModules()[0].GetModules().Length);
-			Assert.AreEqual("b",definition.GetModules()[0].GetModules()[0].Name);
-			Assert.AreEqual("c",definition.GetModules()[0].GetModules()[1].Name);
-		}
-		
-		
-		[Test()]
-		public void SingleLineComment()
-		{
-			var definition = new Definition("//testtesttest\nmodule a{};");
-			Assert.IsNotNull(definition.GetMember("a"));
-		}
-		
-		[Test()]
-		public void MultiLineComment()
-		{
-			var definition = new Definition("module a{}; /* module \nb\n{}; */");
-			Assert.AreEqual(definition.GetModules().Length,1);
-			Assert.AreEqual("a",definition.GetMember("a").Name);
-			Assert.IsNull(definition.GetMember("b"));
-		}
-		
-		[Test()]
-		public void ValuetypeTest()
-		{
-			var definition = new Definition("module a{ valuetype b; }; valuetype c;");
-			
-			Assert.AreEqual("c",definition.GetValuetype("c").Name);
-			Assert.IsInstanceOf(typeof(Valuetype), definition.GetModule("a").GetMember("b"));
-			
+			var doc = new Document("module a{};");
+			Assert.AreEqual("a",doc.GetMember("a").Name);
+			Assert.IsInstanceOf<Module>(doc.GetMember("a"));
 		}
 	}
 }
