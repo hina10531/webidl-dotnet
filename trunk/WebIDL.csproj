@@ -36,15 +36,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Definition.cs" />
     <Compile Include="Grammar\WebIDLParser.cs" />
     <Compile Include="Grammar\WebIDLLexer.cs" />
     <Compile Include="Grammar\WebIDLLexer.FIX.cs" />
+    <Compile Include="DefinitionList.cs" />
+    <Compile Include="IDefinition.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="Container.cs" />
     <Compile Include="Module.cs" />
-    <Compile Include="IDefinible.cs" />
-    <Compile Include="IContainer.cs" />
-    <Compile Include="Valuetype.cs" />
-    <Compile Include="Grammar\Package.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

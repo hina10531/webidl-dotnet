@@ -53,10 +53,4 @@
       <Name>WebIDL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestResources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestResources\Minimal.idl" />
-  </ItemGroup>
 </Project>
