@@ -5,8 +5,8 @@ namespace WebIDL
 {
 	public class Module:Definition,IContainer
 	{
-		private MemberMap<Definition> members;
-		public MemberMap<Definition> Members {get {return members; }}
+		private Package members;
+		public Package Members {get {return members; }}
 
 		internal Module(CommonTree tree, IContainer parent):base(tree,parent)
 		{

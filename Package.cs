@@ -4,7 +4,7 @@ using WebIDL.Grammar;
 
 namespace WebIDL
 {
-	public class Package : MemberMap<Definition>
+	public class Package : MemberMap<Definition,IContainer>
 	{
 		internal Package (CommonTree tree, IContainer owner):base(tree,owner)
 		{

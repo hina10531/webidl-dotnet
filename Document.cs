@@ -7,8 +7,8 @@ namespace WebIDL
 {
 	public class Document : IContainer
 	{
-		private MemberMap<Definition> members;
-		public MemberMap<Definition> Members {get {return members; }}
+		private Package members;
+		public Package Members {get {return members; }}
 		
 		public Document(string sourcetext)
 		{
