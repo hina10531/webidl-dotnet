@@ -3,22 +3,14 @@ using Antlr.Runtime.Tree;
 
 namespace WebIDL
 {
-	public class Module:Container,IDefinition
+	public class Module:Definition,IContainer
 	{
-		public readonly Container Parent;
-		public string Name
+		private MemberMap<Definition> members;
+		public MemberMap<Definition> Members {get {return members; }}
+
+		internal Module(CommonTree tree, IContainer parent):base(tree,parent)
 		{
-			get
-			{
-				return this.name;
-			}
-		}
-		private string name;
-		
-		internal Module(CommonTree tree, Container parent):base((CommonTree)tree.Children[1])
-		{
-			this.Parent = parent;
-			this.name = tree.Children[0].Text;
+			members = new Package((CommonTree)tree.GetChild(1),this);
 		}
 	}
 }

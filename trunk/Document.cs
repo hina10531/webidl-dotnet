@@ -5,14 +5,12 @@ using WebIDL.Grammar;
 
 namespace WebIDL
 {
-	public class Document:Container
+	public class Document : IContainer
 	{
-		public Document(string sourcetext):base(parse(sourcetext))
-		{
-			
-		}
+		private MemberMap<Definition> members;
+		public MemberMap<Definition> Members {get {return members; }}
 		
-		private static CommonTree parse(string sourcetext)
+		public Document(string sourcetext)
 		{
 			var stringstream = new ANTLRStringStream(sourcetext);
 		
@@ -22,7 +20,7 @@ namespace WebIDL
 			
 			var grammar = new WebIDLParser(tokens);
 		
-			return (CommonTree)grammar.documentDef().Tree;
+			this.members = new Package((CommonTree)grammar.documentDef().Tree, this);
 		}
 	}
 }
