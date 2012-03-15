@@ -4,18 +4,18 @@ using Antlr.Runtime.Tree;
 
 namespace WebIDL
 {
-	public abstract class MemberMap<T>
+	public abstract class MemberMap<TMember,TContainer>
 	{
-		protected Dictionary<string,T> members = new Dictionary<string, T>();
-		protected IContainer owner;
+		protected Dictionary<string,TMember> members = new Dictionary<string, TMember>();
+		protected TContainer owner;
 		
-		internal MemberMap(CommonTree tree, IContainer owner)
+		internal MemberMap(CommonTree tree, TContainer owner)
 		{
 			this.owner = owner;
 			this.append(tree);
 		}
 		
-		public T this [string name]
+		public TMember this [string name]
 		{
 			get
 			{
@@ -23,7 +23,7 @@ namespace WebIDL
 			}
 		}
 		
-		public IEnumerator<T> GetEnumerator()
+		public IEnumerator<TMember> GetEnumerator()
 		{
 			return members.Values.GetEnumerator();
 		}

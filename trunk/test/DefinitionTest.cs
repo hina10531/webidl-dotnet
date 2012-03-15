@@ -19,9 +19,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace WebIDL.Test
 {
+	abstract class PackageWalker
+	{
+		private IContainer container;
+		public PackageWalker(IContainer container)
+		{
+			this.container = container;
+		}
+		
+		protected void start()
+		{
+			foreach(var member in container.Members)
+			{
+				foreach(var method in this.GetType().GetMethods())
+				{
+					if(method.Name == "Found" && method.GetParameters()[0].ParameterType == member.GetType())
+						method.Invoke(this,new object[] { member });
+				}   
+			}
+		}
+		
+		public abstract void Found(Module mod);
+		public abstract void Found(Enumerate mod);
+	}
+	
+	
+	
 	class Assert : NUnit.Framework.Assert
 	{
 		public static void Throws<T>(Action action) where T : Exception
@@ -64,6 +91,7 @@ namespace WebIDL.Test
 		}
 	}
 	
+	
 	[TestFixture()]
 	public class DefinitionTest
 	{			
@@ -103,7 +131,51 @@ namespace WebIDL.Test
 			
 		
 		}
-
+		
+		[Test()]
+		public void Walker()
+		{
+			new TestWalker("",new Document("enum p {\"FA\",\"FE\"}; module a{ module b{ module c{ enum lala {\"a\"};};  }; }; module a{ module b{ module d{};};}; "));
+		}
+	}
+	
+	class TestWalker:PackageWalker
+	{
+		private string prefix;
+		public TestWalker(string prefix, IContainer d):base(d)
+		{
+			this.prefix = prefix;
+			this.start();
+		}
+		
+		public override void Found(Module m)
+		{
+			Console.WriteLine(this.prefix + "namespace " +m.Name + "\n" + this.prefix + "{");
+			new TestWalker(prefix + "    ", m);
+			Console.WriteLine(this.prefix +"}");
+		}
+		
+		public override void Found(Enumerate en)
+		{
+			Console.WriteLine(this.prefix + "enum " + en.Name + "\n" + this.prefix + "{");
+			
+			
+			var aux = new List<string>();
+			
+			foreach(var val in en.Values)
+				aux.Add(val);
+			
+			
+			
+			var tab = ",\n" +this.prefix + "    ";
+			
+			var text = string.Join(tab,aux.ToArray());
+			Console.WriteLine(this.prefix + "    " + text);
+			
+			
+			Console.WriteLine(this.prefix +"}");
+			//var lala = new TestWalker(prefix + "    ", m);
+		}
 	}
 }
 

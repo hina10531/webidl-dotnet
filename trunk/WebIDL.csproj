@@ -52,6 +52,7 @@
     <Compile Include="Callback.cs" />
     <Compile Include="Enumerate.cs" />
     <Compile Include="Dictionary.cs" />
+    <Compile Include="IType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

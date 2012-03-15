@@ -70,7 +70,7 @@ dictionaryDef
 		ID
 		BLOCK
 		CLOSE_BLOCK
-	->	^(KW_DICTIONARY ID  );
+	->	^(KW_DICTIONARY ID);
 
 enumMembers
 	:	STRING (',' STRING)* -> STRING*;
@@ -98,8 +98,9 @@ attributeDef
 valuetypeDef
 	:	KW_VALUETYPE
 		ID
+		typeReference
 		END_STMT
-	-> ^(KW_VALUETYPE ID);
+	-> ^(KW_VALUETYPE ID typeReference);
 
 callbackDef
 	:	KW_CALLBACK
@@ -114,6 +115,10 @@ exceptionDef
 		exceptionMember*
 		CLOSE_BLOCK
 	-> ^(KW_EXCEPTION ID ^(BLOCK exceptionMember*));
+
+typeReference
+	:	ID;
+
 
 //CONTROL KEYWORDS
 KW_MODULE		:	'module';
