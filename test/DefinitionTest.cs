@@ -26,13 +26,34 @@ namespace WebIDL.Test
 	public class DefinitionTest
 	{			
 		[Test()]
-		public void newclasses()
+		public void Module()
 		{
-			var doc = new Document("module a{valuetype lele;};");
-			
+			var doc = new Document("module a{};");
 			Assert.AreEqual("a",doc.Members["a"].Name);
-			Assert.IsInstanceOf<Module>(doc.Members["a"]);
+		}
+		
+		
+		[Test()]
+		public void InnerModule()
+		{
+			var doc = new Document("module a{module b{};};module a{module c{};};");
 			
+			var innerMod = doc.Members["a"] as Module;
+			
+			Assert.IsInstanceOf<Module>(innerMod.Members["b"]);
+			Assert.AreSame(innerMod, innerMod.Members["c"].Parent );
+			
+		}
+		
+		[Test()]
+		public void Enumerate()
+		{
+			var doc = new Document("enum test { \"a\",\"b\" };");
+			
+			var enumerate = doc.Members["test"] as Enumerate;
+			
+			Assert.AreEqual("a", enumerate.Values[0]);
+			Assert.AreEqual("b",enumerate.Values[1]);
 		}
 
 	}

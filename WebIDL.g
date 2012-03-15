@@ -73,7 +73,7 @@ dictionaryDef
 	->	^(KW_DICTIONARY ID  );
 
 enumMembers
-	:	STRING (',' STRING)*;
+	:	STRING (',' STRING)* -> STRING*;
 
 
 constantDef
