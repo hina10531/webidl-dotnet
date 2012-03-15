@@ -1,25 +1,52 @@
 using System;
-using System.Collections.Generic;
 using Antlr.Runtime.Tree;
 using WebIDL.Grammar;
 
 namespace WebIDL
 {
-	public class DefinitionList
+	public class Package : MemberMap<Definition>
 	{
-		internal Dictionary<string,IDefinition> members = new Dictionary<string, IDefinition>();
-		public DefinitionList(CommonTree tree, Container parent)
+		internal Package (CommonTree tree, IContainer owner):base(tree,owner)
+		{
+		}
+		internal override void append(CommonTree tree)
 		{
 			if(tree.Children == null)
 				return;
-		
-		
-			foreach(var childitree in tree.Children)
+			
+			foreach(var itreeChild in tree.Children)
 			{
-				var child = (CommonTree) childitree;
+				var child = (CommonTree) itreeChild;
+				
 				var name = child.Children[0].Text;
 				
 				if(child.Type == WebIDLLexer.KW_MODULE)
+				{
+					//IF NOT EXISTS
+					if(!members.ContainsKey(name))
+					{
+						//CREATE IT
+						members.Add(name, new Module(child,owner));
+					}
+					else if(members[name] is Module)
+					{
+						//IF EXISTS EXTEND IT
+						//((Module) members[name]).childs.append(child);
+					}
+					else
+					{
+						//IF NOT NAME DUPLICATE
+						throw new InvalidOperationException("Nombre ya definifo");
+					}
+				}
+				else
+				{
+					throw new NotImplementedException();
+				}
+				
+			}
+			
+			/*if(child.Type == WebIDLLexer.KW_MODULE)
 				{
 					//IF NOT EXISTS
 					if(!members.ContainsKey(name))
@@ -38,7 +65,7 @@ namespace WebIDL
 						throw new InvalidOperationException("Nombre ya definifo");
 					}
 				}
-				/*else if(child.Type == WebIDLLexer.KW_VALUETYPE)
+				else if(child.Type == WebIDLLexer.KW_VALUETYPE)
 				{
 					if(!members.ContainsKey(name))
 					{
@@ -48,12 +75,11 @@ namespace WebIDL
 					{
 						throw new InvalidOperationException("Nombre ya definifo");
 					}
-				}*/
+				}
 				else
 				{
 					throw new NotImplementedException();
-				}
-			}
+				}*/
 		}
 	}
 }

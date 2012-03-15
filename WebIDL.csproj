@@ -39,11 +39,13 @@
     <Compile Include="Grammar\WebIDLParser.cs" />
     <Compile Include="Grammar\WebIDLLexer.cs" />
     <Compile Include="Grammar\WebIDLLexer.FIX.cs" />
-    <Compile Include="DefinitionList.cs" />
-    <Compile Include="IDefinition.cs" />
     <Compile Include="Document.cs" />
-    <Compile Include="Container.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Definition.cs" />
+    <Compile Include="Typedef.cs" />
+    <Compile Include="MemberMap.cs" />
+    <Compile Include="Package.cs" />
+    <Compile Include="IContainer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -29,9 +29,15 @@ namespace WebIDL.Test
 		public void newclasses()
 		{
 			var doc = new Document("module a{};");
-			Assert.AreEqual("a",doc.GetMember("a").Name);
-			Assert.IsInstanceOf<Module>(doc.GetMember("a"));
+			
+			Assert.AreEqual("a",doc.Members["a"].Name);
+			Assert.IsInstanceOf<Module>(doc.Members["a"]);
+			
+			foreach(var member in doc.Members)
+				Console.WriteLine(member.Name);
+			
 		}
+
 	}
 }
 
