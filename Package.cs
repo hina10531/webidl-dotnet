@@ -36,8 +36,29 @@ namespace WebIDL
 					else
 					{
 						//IF NOT NAME DUPLICATE
-						throw new InvalidOperationException("Nombre ya definifo");
+						
 					}
+				}
+				else if(child.Type == WebIDLParser.KW_VALUETYPE)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Valuetype(child,owner));
+				}
+				else if(child.Type == WebIDLParser.KW_CONSTANT)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Constant(child,owner));
+				}
+				else if(child.Type == WebIDLParser.KW_TYPEDEF)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Typedef(child,owner));
 				}
 				else
 				{

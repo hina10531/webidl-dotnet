@@ -46,6 +46,12 @@
     <Compile Include="MemberMap.cs" />
     <Compile Include="Package.cs" />
     <Compile Include="IContainer.cs" />
+    <Compile Include="Valuetype.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="Interface.cs" />
+    <Compile Include="Callback.cs" />
+    <Compile Include="Enumerate.cs" />
+    <Compile Include="Dictionary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
