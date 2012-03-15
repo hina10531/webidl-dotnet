@@ -31,7 +31,8 @@ namespace WebIDL
 					else if(members[name] is Module)
 					{
 						//IF EXISTS EXTEND IT
-						//((Module) members[name]).childs.append(child);
+						((Module) members[name]).Members.append(child.GetChild(1) as CommonTree);
+						
 					}
 					else
 					{
@@ -59,6 +60,34 @@ namespace WebIDL
 						throw new InvalidOperationException("already defined");
 					else
 						members.Add(name,new Typedef(child,owner));
+				}
+				else if(child.Type == WebIDLParser.KW_ENUM)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Enumerate(child,owner));
+				}
+				else if(child.Type == WebIDLParser.KW_CALLBACK)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Callback(child,owner));
+				}
+				else if(child.Type == WebIDLParser.KW_DICTIONARY)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Dictionary(child,owner));
+				}
+				else if(child.Type == WebIDLParser.KW_INTERFACE)
+				{
+					if(members.ContainsKey(name))
+						throw new InvalidOperationException("already defined");
+					else
+						members.Add(name,new Interface(child,owner));
 				}
 				else
 				{
