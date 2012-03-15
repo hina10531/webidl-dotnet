@@ -22,6 +22,48 @@ using NUnit.Framework;
 
 namespace WebIDL.Test
 {
+	class Assert : NUnit.Framework.Assert
+	{
+		public static void Throws<T>(Action action) where T : Exception
+		{
+			try
+			{
+				action();
+			}
+			catch(T)
+			{
+				return;
+			}
+			Assert.Fail();
+		}
+		
+		public static void Throws<T>(Action action, string message) where T : Exception
+		{
+			try
+			{
+				action();
+			}
+			catch(T)
+			{
+				return;
+			}
+			Assert.Fail(message);
+		}
+		
+		public static void Throws<T>(Action action, string message, params object[] args) where T : Exception
+		{
+			try
+			{
+				action();
+			}
+			catch(T)
+			{
+				return;
+			}
+			Assert.Fail(message, args);
+		}
+	}
+	
 	[TestFixture()]
 	public class DefinitionTest
 	{			
@@ -54,6 +96,12 @@ namespace WebIDL.Test
 			
 			Assert.AreEqual("a", enumerate.Values[0]);
 			Assert.AreEqual("b",enumerate.Values[1]);
+			
+			
+			Assert.Throws<Enumerate.RepeatValueException>(() => new Document("enum {\"a\",\"a\"};"));
+			
+			
+		
 		}
 
 	}
