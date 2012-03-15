@@ -28,13 +28,10 @@ namespace WebIDL.Test
 		[Test()]
 		public void newclasses()
 		{
-			var doc = new Document("module a{};");
+			var doc = new Document("module a{valuetype lele;};");
 			
 			Assert.AreEqual("a",doc.Members["a"].Name);
 			Assert.IsInstanceOf<Module>(doc.Members["a"]);
-			
-			foreach(var member in doc.Members)
-				Console.WriteLine(member.Name);
 			
 		}
 
