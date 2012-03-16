@@ -10,7 +10,8 @@ namespace WebIDL
 
 		internal Module(CommonTree tree, IContainer parent):base(tree,parent)
 		{
-			members = new Package((CommonTree)tree.GetChild(1),this);
+			members = new Package(this);
+			members.append((CommonTree)tree.GetChild(1));
 		}
 	}
 }

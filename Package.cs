@@ -6,9 +6,11 @@ namespace WebIDL
 {
 	public class Package : MemberMap<Definition,IContainer>
 	{
-		internal Package (CommonTree tree, IContainer owner):base(tree,owner)
+		internal Package (IContainer owner):base(owner)
 		{
+			
 		}
+		
 		internal override void append(CommonTree tree)
 		{
 			if(tree.Children == null)

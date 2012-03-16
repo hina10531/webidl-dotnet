@@ -9,10 +9,9 @@ namespace WebIDL
 		protected Dictionary<string,TMember> members = new Dictionary<string, TMember>();
 		protected TContainer owner;
 		
-		internal MemberMap(CommonTree tree, TContainer owner)
+		internal MemberMap(TContainer owner)
 		{
 			this.owner = owner;
-			this.append(tree);
 		}
 		
 		public TMember this [string name]
