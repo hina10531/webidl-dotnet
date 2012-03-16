@@ -125,57 +125,18 @@ namespace WebIDL.Test
 			Assert.AreEqual("a", enumerate.Values[0]);
 			Assert.AreEqual("b",enumerate.Values[1]);
 			
-			
 			Assert.Throws<Enumerate.RepeatValueException>(() => new Document("enum {\"a\",\"a\"};"));
-			
-			
-		
 		}
 		
 		[Test()]
-		public void Walker()
+		public void ValuetypeOfInterface()
 		{
-			new TestWalker("",new Document("enum p {\"FA\",\"FE\"}; module a{ module b{ module c{ enum lala {\"a\"};};  }; }; module a{ module b{ module d{};};}; "));
-		}
-	}
-	
-	class TestWalker:PackageWalker
-	{
-		private string prefix;
-		public TestWalker(string prefix, IContainer d):base(d)
-		{
-			this.prefix = prefix;
-			this.start();
+			var doc = new Document("interface myInterface { };  valuetype myInterfaceByValue myInterface;");
+			
+			Assert.AreSame( (doc.Members["myInterfaceByValue"] as Valuetype).ValuedType , doc.Members["myInterface"]);
 		}
 		
-		public override void Found(Module m)
-		{
-			Console.WriteLine(this.prefix + "namespace " +m.Name + "\n" + this.prefix + "{");
-			new TestWalker(prefix + "    ", m);
-			Console.WriteLine(this.prefix +"}");
-		}
-		
-		public override void Found(Enumerate en)
-		{
-			Console.WriteLine(this.prefix + "enum " + en.Name + "\n" + this.prefix + "{");
-			
-			
-			var aux = new List<string>();
-			
-			foreach(var val in en.Values)
-				aux.Add(val);
-			
-			
-			
-			var tab = ",\n" +this.prefix + "    ";
-			
-			var text = string.Join(tab,aux.ToArray());
-			Console.WriteLine(this.prefix + "    " + text);
-			
-			
-			Console.WriteLine(this.prefix +"}");
-			//var lala = new TestWalker(prefix + "    ", m);
-		}
 	}
+
 }
 

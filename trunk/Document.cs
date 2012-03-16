@@ -20,7 +20,10 @@ namespace WebIDL
 			
 			var grammar = new WebIDLParser(tokens);
 		
-			this.members = new Package((CommonTree)grammar.documentDef().Tree, this);
+			
+			
+			this.members = new Package(this);
+			this.members.append((CommonTree)grammar.documentDef().Tree);
 		}
 	}
 }
