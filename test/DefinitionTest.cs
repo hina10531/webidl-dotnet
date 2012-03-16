@@ -134,6 +134,8 @@ namespace WebIDL.Test
 			var doc = new Document("interface myInterface { };  valuetype myInterfaceByValue myInterface;");
 			
 			Assert.AreSame( (doc.Members["myInterfaceByValue"] as Valuetype).ValuedType , doc.Members["myInterface"]);
+			
+			Console.WriteLine(((doc.Members["myInterfaceByValue"] as Valuetype).ValuedType as Interface ).Name );
 		}
 		
 	}
